@@ -6,6 +6,15 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
 
+import apiLimiter from "../src/middlewares/rate-limit-validator.js"
+import proveedorRoutes from "../src/proveedor/proveedor.routes.js"
+
+
+
+
+
+
+
 import apiLimiter from "../src/middlewares/rate-limit-validator.js";
 import clientesRoutes from "../src/clientes/clientes.routes.js";
 
@@ -20,7 +29,11 @@ const middlewares = (app) => {
 
 const routes = (app) => {
 
+    app.use('/almacenadora/v1/proveedor', proveedorRoutes)
+
+
     app.use("/bodega/v1/clientes", clientesRoutes)
+
     
 };
 
@@ -36,7 +49,11 @@ const conectarDB = async () => {
 export const initServer = () => {
     const app = express();
     try {
+
+        middlewares(app);
+
        middlewares(app);
+
 
         conectarDB();
         routes(app);
