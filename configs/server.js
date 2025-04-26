@@ -5,7 +5,8 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
-
+import apiLimiter from "../src/middlewares/rate-limit-validator.js";
+import clientesRoutes from "../src/clientes/clientes.routes.js";
 
 
 
@@ -20,7 +21,7 @@ const middlewares = (app) => {
 };
 
 const routes = (app) => {
-
+    app.use("/bodega/v1/clientes", clientesRoutes)
     
 };
 
@@ -36,7 +37,7 @@ const conectarDB = async () => {
 export const initServer = () => {
     const app = express();
     try {
-       
+       middlewares(app);
         conectarDB();
         routes(app);
         const port = process.env.PORT || 3001; // Asegúrate de que el puerto sea 3001
