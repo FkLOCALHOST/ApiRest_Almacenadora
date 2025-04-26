@@ -8,7 +8,17 @@ import { dbConnection } from "./mongo.js";
 import trabajadorRoutes from "../trabajador/trabajador.routes.js"
 
 
+import apiLimiter from "../src/middlewares/rate-limit-validator.js"
+import proveedorRoutes from "../src/proveedor/proveedor.routes.js"
 
+
+
+
+
+
+
+import apiLimiter from "../src/middlewares/rate-limit-validator.js";
+import clientesRoutes from "../src/clientes/clientes.routes.js";
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -21,6 +31,13 @@ const middlewares = (app) => {
 
 const routes = (app) => {
     app.use("administradorBodega/v1/trabajador", trabajadorRoutes);
+
+    app.use('/almacenadora/v1/proveedor', proveedorRoutes)
+
+
+    app.use("/bodega/v1/clientes", clientesRoutes)
+
+    
 };
 
 const conectarDB = async () => {
@@ -35,7 +52,12 @@ const conectarDB = async () => {
 export const initServer = () => {
     const app = express();
     try {
-       
+
+        middlewares(app);
+
+       middlewares(app);
+
+
         conectarDB();
         routes(app);
         const port = process.env.PORT || 3001; // Asegúrate de que el puerto sea 3001
