@@ -96,3 +96,24 @@ export const eliminarCliente = async (req, res) => {
         })
     }
 }
+
+export const actualizarCliente = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const data = req.body;
+
+        const cliente = await Clientes.findByIdAndUpdate(id, data, { new: true});
+
+        res.status(200).json({
+            success: true,
+            mg: 'Cliente actualizado',
+            cliente
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al actualizar el cliente',
+            error: err.message
+        })
+    }
+}

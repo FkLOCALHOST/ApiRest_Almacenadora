@@ -33,3 +33,10 @@ export const eliminarClientesValidador = [
     validarCampos,
     manejoErrores
 ];
+
+export const actualizarClientesValidador = [
+    param('id').isMongoId().withMessage('El ID no es valido'),
+    param('id').custom(clienteExistente),
+    validarCampos,
+    manejoErrores
+];
