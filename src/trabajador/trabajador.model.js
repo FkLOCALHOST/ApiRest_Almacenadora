@@ -35,11 +35,23 @@ const trabajadorSchema = Schema({
     fotoDePerfil: {
         type: String
     },
-    rol: {
+    role: {
         type: String,
         required: true,
         enum: ['EMPLEADO_ROLE', 'ADMIN_ROLE'],
         default: 'EMPLEADO_ROLE'
     },  
 
+},
+{
+    versionKey: false,
+    timeStamps: true
 })
+
+trabajadorSchema.methods.toJSON = function(){
+    const {_id, ...trabajador} = this.toObject()
+    trabajador.tid = _id
+    return trabajador
+}
+
+export default model('Trabajador', trabajadorSchema)
