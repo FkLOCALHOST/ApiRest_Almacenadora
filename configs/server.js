@@ -5,6 +5,8 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
+import trabajadorRoutes from "../trabajador/trabajador.routes.js"
+
 
 import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 import proveedorRoutes from "../src/proveedor/proveedor.routes.js"
@@ -28,6 +30,7 @@ const middlewares = (app) => {
 };
 
 const routes = (app) => {
+    app.use("administradorBodega/v1/trabajador", trabajadorRoutes);
 
     app.use('/almacenadora/v1/proveedor', proveedorRoutes)
 
