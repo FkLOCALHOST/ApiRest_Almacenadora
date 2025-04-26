@@ -1,7 +1,7 @@
 import { body, param } from "express-validator";
 import { validarCampos } from "./validate-fields.js";
 import { manejoErrores } from "./handle-errors.js";
-import { correoExistente } from "../helpers/db-validators.js";
+import { correoExistente, clienteExistente } from "../helpers/db-validators.js";
 
 export const agregarClienteValidador = [
     body('nombre').notEmpty().withMessage('El nombre es requerido'),
@@ -11,6 +11,13 @@ export const agregarClienteValidador = [
     body('correo').custom(correoExistente),
     body('telefono').notEmpty().withMessage('El telefono es requerido'),
     body('telefono').isLength({ min: 8, max: 8}).withMessage('El telefono debe de tener 8 digitos'),
+    validarCampos,
+    manejoErrores
+];
+
+export const obtenerClientePorIdValidador = [
+    param('id').isMongoId().withMessage('El ID no es valido'),
+    param('id').custom(clienteExistente),
     validarCampos,
     manejoErrores
 ];

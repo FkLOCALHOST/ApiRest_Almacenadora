@@ -25,3 +25,28 @@ export const agregarCliente = async (req, res) => {
         });
     }
 }
+
+export const obtenerClientePorId = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const cliente = await Clientes.findById(id)
+
+        if(!cliente){
+            return res.status(404).json({
+                success: false,
+                message: 'Cliente no esncontrado'
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            cliente
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al obtener al cliente',
+            error: err.message
+        })
+    }
+}
