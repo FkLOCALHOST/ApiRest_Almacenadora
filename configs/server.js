@@ -23,13 +23,13 @@ const middlewares = (app) => {
 };
 
 const routes = (app) => {
-    app.use("almacenadora/v1/trabajador", trabajadorRoutes);
+    app.use("/almacenadora/v1/trabajador", trabajadorRoutes);
 
-    app.use('almacenadora/v1/proveedor', proveedorRoutes)
+    app.use('/almacenadora/v1/proveedor', proveedorRoutes)
 
-    app.use("almacenadora/v1/clientes", clientesRoutes)
+    app.use("/almacenadora/v1/clientes", clientesRoutes)
 
-    app.use("almacenadora/v1/productos", productosRoutes);
+    app.use("/almacenadora/v1/productos", productosRoutes);
     
 };
 
