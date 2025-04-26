@@ -34,23 +34,23 @@ export const inicializarAdmin = async () => {
 
 inicializarAdmin();
 
-export const crearTrabajador = async (req, res) => {
+export const crearEmpleado = async (req, res) => {
     try{
     const data = req.body;
-    let profilePicture = req.file ? req.file.filename : null;
-    data.profilePicture = profilePicture;
+    let fotoDePerfil = req.file ? req.file.filename : null;
+    data.fotoDePerfil = fotoDePerfil;
        
     const trabajador = await Trabajador.create(data);
 
         return res.status(201).json({
-            message: "El trabajador fue creado con éxito",
+            message: "El empleado fue creado con éxito",
             nombre: trabajador.nombre,
             apellido: trabajador.apellido
         });
 
     } catch (err) {
         return res.status(500).json({
-            message: "Error al crear el trabajador",
+            message: "Error al crear el empleado",
             error: err.message
         });
     }
@@ -78,3 +78,26 @@ export const obtenerTrabajadores = async (req, res) => {
         });
     }
 }
+
+export const actualizarEmpleado = async (req, res) => {
+    try{
+        const {tid} = req.params;
+        const data = req.body;
+
+        const trabajador = await Trabajador.findByIdAndUpdate(tid, data,{ new: true });
+        
+        return res.status(200).json({
+            message: "El empleado fue actualizado con éxito",
+            trabajador
+        });
+    } catch (err) {
+        return res.status(500).json({
+            message: "Fallo al actualizar el empleado",
+            error: err.message
+        });
+    }
+}
+
+
+
+

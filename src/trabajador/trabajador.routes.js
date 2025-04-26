@@ -1,22 +1,26 @@
 import { Router } from "express";
-import { crearTrabajador, obtenerTrabajadores, obtenerTrabajador, actualizarTrabajador, eliminarTrabajador } from "./trabajador.controller.js";
+import { crearEmpleado, obtenerTrabajadores, obtenerTrabajador, actualizarEmpleado, eliminarTrabajador } from "./trabajador.controller.js";
 import { subirFotoDeTrabajador } from "../middlewares/multer-uploads.js";
 import { deleteFileOnError } from "../middlewares/delete-file-on-error.js";
-import { crearTrabajadorValidator, obtenerTrabajadoresValidator } from "../middlewares/trabajador-validators.js";
+import { crearEmpleadoValidator, obtenerTrabajadoresValidator, actualizarEmpleadoValidator } from "../middlewares/trabajador-validators.js";
 
 const router = Router();
 
 router.post(
-    "/crearTrabajador",
+    "/crearEmpleado",
     subirFotoDeTrabajador.single("fotoDePerfil"),
-    crearTrabajadorValidator,
+    crearEmpleadoValidator,
     deleteFileOnError,
-    crearTrabajador
+    crearEmpleado
 )
 
 router.get("/obtenerTrabajadores", obtenerTrabajadoresValidator, obtenerTrabajadores);
 
-
+router.put(
+    "actualizarEmpleado/:tid",
+    actualizarEmpleadoValidator,
+    actualizarEmpleado
+)
 
 
 
