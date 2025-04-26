@@ -1,38 +1,11 @@
 import Trabajador from './trabajador.model.js';
-import { hash, verify } from "argon2"
-import fs from "fs/promises";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+// import { hash, verify } from "argon2"
+// import fs from "fs/promises";
+// import { join, dirname } from "path";
+// import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export const inicializarAdmin = async () => {
-    try {
-        const adminExists = await Trabajador.findOne({ role: "ADMIN_ROLE" }); 
-        if (!adminExists) {
-
-            const adminUser = {
-                nombre: "Daniel",
-                apellido: "Sacol",
-                correo: "dsacol10@gmail.com",
-                telefono: "33815217",
-                estado: true,
-                role: "ADMIN_ROLE"
-            };
-            const admin = new User(adminUser);
-            await admin.save();
-            console.log("Administrador creado con éxito");
-        } else {
-            console.log("El Administrador ya existe");
-        }
-
-    } catch (error) {
-        console.error("Error al crear el Administrador:", error);
-    }
-
-};
-
-inicializarAdmin();
 
 export const crearEmpleado = async (req, res) => {
     try{
