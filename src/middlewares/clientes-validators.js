@@ -21,3 +21,8 @@ export const obtenerClientePorIdValidador = [
     validarCampos,
     manejoErrores
 ];
+
+export const listarClientesValidador = [
+    validarCampos,
+    manejoErrores
+];
