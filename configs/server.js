@@ -6,10 +6,6 @@ import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
 
-
-
-
-
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
@@ -21,7 +17,6 @@ const middlewares = (app) => {
 
 const routes = (app) => {
 
-    
 };
 
 const conectarDB = async () => {
@@ -36,7 +31,7 @@ const conectarDB = async () => {
 export const initServer = () => {
     const app = express();
     try {
-       
+
         conectarDB();
         routes(app);
         const port = process.env.PORT || 3001; // Asegúrate de que el puerto sea 3001
