@@ -30,4 +30,4 @@ const createMulterConfig = (destinationFolder) => {
     });
 };
 
-export const subirFotoDeTrabajadores = createMulterConfig("../../public/uploads/trabajadores-pictures");
+export const subirFotoDeTrabajador = createMulterConfig("../../public/uploads/trabajadores-pictures");

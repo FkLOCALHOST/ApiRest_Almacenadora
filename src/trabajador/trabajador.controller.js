@@ -55,3 +55,26 @@ export const crearTrabajador = async (req, res) => {
         });
     }
 }
+
+export const obtenerTrabajadores = async (req, res) => {
+    try {
+        const { limit = 10, from = 0 } = req.query;
+        const query = { status: true };
+        const [total, trabajadores] = await Promise.all([
+            Trabajador.countDocuments(query),
+            Trabajador.find(query)
+                .skip(Number(from))
+                .limit(Number(limit))
+        ]);
+
+        return res.status(200).json({
+            total,
+            trabajadores
+        });
+    } catch (err) {
+        return res.status(500).json({
+            message: "Error al obtener los trabajadores",
+            error: err.message
+        });
+    }
+}

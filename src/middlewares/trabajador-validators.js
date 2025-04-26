@@ -7,7 +7,7 @@ import { validateJWT } from "./validate-jwt.js";
 import { hasRoles } from "./validate-roles.js";
 
 
-export const crearTrabajador = [
+export const crearTrabajadorValidator = [
     validateJWT,
     hasRoles("ADMIN_ROLE"),
     body("nombre").notEmpty().withMessage("El nombre es obligatorio"),
@@ -18,6 +18,13 @@ export const crearTrabajador = [
     body("rol").isIn(["EMPLEADO_ROLE", "ADMIN_ROLE"]).withMessage("El rol debe ser 'EMPLEADO_ROLE' o 'ADMIN_ROLE'"),
     validarCampos,
     deleteFileOnError,
+    handleErrors
+];
+
+export const obtenerTrabajadoresValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    validarCampos,
     handleErrors
 ];
 
