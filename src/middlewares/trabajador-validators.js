@@ -43,4 +43,14 @@ export const actualizarEmpleadoValidator = [
     handleErrors
 ];
 
+export const eliminarEmpleadoValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    param("tid").isMongoId().withMessage("ID inválido"),
+    param("tid").custom(esRolTrabajador),
+    validarCampos,
+    handleErrors
+];
+
+
 

@@ -98,6 +98,22 @@ export const actualizarEmpleado = async (req, res) => {
     }
 }
 
-
+export const eliminarEmpleado = async (req, res) => {
+    try{
+        const {tid} = req.params;
+        const trabajador = await Trabajador.findByIdAndUpdate(tid, { estado: false }, { new: true });
+        
+        return res.status(200).json({
+            message: "El empleado fue eliminado con éxito",
+            trabajador
+        });
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: "Fallo al eliminar el empleado",
+            error: err.message          
+        });
+    }
+}
 
 

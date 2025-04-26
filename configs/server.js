@@ -5,7 +5,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import { dbConnection } from "./mongo.js";
-
+import trabajadorRoutes from "../trabajador/trabajador.routes.js"
 
 
 
@@ -20,8 +20,7 @@ const middlewares = (app) => {
 };
 
 const routes = (app) => {
-
-    
+    app.use("administradorBodega/v1/trabajador", trabajadorRoutes);
 };
 
 const conectarDB = async () => {
