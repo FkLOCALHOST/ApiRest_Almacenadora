@@ -1,3 +1,5 @@
+export const handleErrors = (err, req, res, next) => {
+    if (err.status === 400 || err.errors) {
 
 export const handleErrors = (err, req, res, next) => {
     if (err.status === 400 || err.errors) {
@@ -14,6 +16,7 @@ export const manejoErrores = (err, req, res, next) => {
         success: false,
         message: err.message
     });
+}
 
 }
 
