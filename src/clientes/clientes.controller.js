@@ -76,3 +76,23 @@ export const listarCientes = async (req, res) => {
         })
     }
 }
+
+export const eliminarCliente = async (req, res) => {
+    try{
+        const { id } = req.params
+
+        const cliente = await Clientes.findByIdAndUpdate(id, { estado: false}, {new: true})
+
+        return res.status(200).json({
+            success: true,
+            message: 'Cliente eliminado',
+            cliente
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al eliminar el cliente',
+            error: err.message
+        })
+    }
+}
