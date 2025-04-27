@@ -1,11 +1,10 @@
 import Trabajador from "./trabajador.model.js";
 import { validateJWT } from "../middlewares/validate-jwt.js";
 
-
 export const obtenerTrabajadores = [
   validateJWT,
 
-  async (req, res) => {
+  async (req, res) => {º
     try {
       const { limit = 10, from = 0 } = req.query;
       const query = { status: true };
@@ -52,6 +51,27 @@ export const actualizarEmpleado = [
   },
 ];
 
+export const lsitarEmpleado = async (req, res) => {
+  try {
+    const { limite = 5, desde = 0 } = req.query;
+    const query = { status: true };
+
+    const [total, trabajadores] = await Promise.all([
+      Trabajador.countDocuments(query),
+      Trabajador.find(query).skip(Number(desde)).limit(Number(limite)),
+    ]);
+    return res.status(200).json({
+      success: true,
+      total,
+      trabajadores,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: "Error al obtener los trabajadores",
+      error: err.message,
+    });
+  }
+}
 export const eliminarEmpleado = [
   validateJWT,
 
@@ -60,7 +80,7 @@ export const eliminarEmpleado = [
       const { tid } = req.params;
       const trabajador = await Trabajador.findByIdAndUpdate(
         tid,
-        { estado: false },
+        { estadoT: false },
         { new: true }
       );
 

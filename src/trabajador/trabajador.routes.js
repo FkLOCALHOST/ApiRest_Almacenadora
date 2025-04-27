@@ -23,7 +23,7 @@ router.get(
 );
 
 router.put(
-  "actualizarEmpleado/:tid",
+  "/actualizarEmpleado/:tid",
   actualizarEmpleadoValidator,
   actualizarEmpleado
 );

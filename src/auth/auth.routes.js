@@ -11,7 +11,7 @@ const router = Router();
 
 router.post(
   "/register",
-   subirFotoDeTrabajador.single("fotoDePerfil"),
+  subirFotoDeTrabajador.single("fotoDePerfil"), // Cambiado de "public" a "fotoDePerfil"
   registerValidator,
   register
 );

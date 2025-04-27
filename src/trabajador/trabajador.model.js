@@ -21,7 +21,7 @@ const trabajadorSchema = Schema({
     correoT: {
         type: String,
         required: [true, 'El correo es obligatorio'],
-        unique: true,
+        unique: true, // Asegúrate de que el índice esté configurado aquí
     },
     telefonoT: {
         type: String,
@@ -32,7 +32,7 @@ const trabajadorSchema = Schema({
     estadoT: {
         type: Boolean,
         default: true,
-        required: true
+        required: [true, 'El estado es obligatorio']
     },
     rendimientoT: {
         type: Number,
@@ -61,7 +61,7 @@ const trabajadorSchema = Schema({
 })
 
 trabajadorSchema.methods.toJSON = function(){
-    const {_id, ...trabajador} = this.toObject()
+    const {_id, contrasenaT, ...trabajador} = this.toObject(); // Excluye la contraseña del objeto retornado
     trabajador.tid = _id
     return trabajador
 }

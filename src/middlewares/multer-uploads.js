@@ -1,33 +1,25 @@
 import multer from "multer";
-import { dirname, extname, join } from "path";
-import { fileURLToPath } from "url";
+import fs from "fs";
+import path from "path";
 
-const CURRENT_DIR = dirname(fileURLToPath(import.meta.url));
-const MIMETYPES = ["image/png", "image/jpg", "image/jpeg"];
-const MAX_SIZE = 100000000;
+const uploadDir = path.join(process.cwd(), "uploads");
 
-const createMulterConfig = (destinationFolder) => {
-    return multer({
-        storage: multer.diskStorage({
-            destination: (req, file, cb) => {
-                const fullPath = join(CURRENT_DIR, destinationFolder);
-                req.filePath = fullPath;
-                cb(null, fullPath);
-            },
-            filename: (req, file, cb) => {
-                const fileExtension = extname(file.originalname);
-                const fileName = file.originalname.split(fileExtension)[0];
-                cb(null, `${fileName}-${Date.now()}${fileExtension}`);
-            }
-        }),
-        fileFilter: (req, file, cb) => {
-            if (MIMETYPES.includes(file.mimetype)) cb(null, true);
-            else cb(new Error(`Solamente se aceptan archivos de los siguientes tipos: ${MIMETYPES.join(" ")}`));
-        },
-        limits: {
-            fileSize: MAX_SIZE
-        }
-    });
-};
+// Verifica si el directorio "uploads/" existe, si no, lo crea
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
-export const subirFotoDeTrabajador = createMulterConfig("../../public/uploads/trabajadores-pictures");
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + "-" + uniqueSuffix + "-" + file.originalname);
+  },
+});
+
+export const subirFotoDeTrabajador = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // Límite de 5 MB
+});

@@ -6,6 +6,23 @@ export const register = async (req, res) => {
   try {
     const data = req.body;
     let fotoDePerfil = req.file ? req.file.filename : null;
+
+    if (!data.correoT || data.correoT.trim() === "") {
+      return res.status(400).json({
+        message: "Registro de trabajador fallido",
+        error: "El correoT es obligatorio y no puede estar vacío",
+      });
+    }
+
+    const correoExistente = await Trabajador.findOne({ correoT: data.correoT });
+
+    if (correoExistente) {
+      return res.status(400).json({
+        message: "Registro de trabajador fallido",
+        error: `El correo ${data.correoT} ya está registrado`,
+      });
+    }
+
     const encryptedPassword = await hash(data.contrasenaT);
     data.contrasenaT = encryptedPassword;
     data.fotoDePerfil = fotoDePerfil;
@@ -14,8 +31,9 @@ export const register = async (req, res) => {
 
     return res.status(201).json({
       message: "Trabajador ha sido creado",
-      nombre: trabajador.nombre,
+      nombreT: trabajador.nombreT,
       correoT: trabajador.correoT,
+      contrasenaT: "La contraseña ha sido encriptada y no se puede mostrar",
     });
   } catch (err) {
     return res.status(500).json({
@@ -26,11 +44,18 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { correoT, telefono, contrasenaT } = req.body;
+  const { correoT, telefonoT, contrasenaT } = req.body;
   try {
+    if (!contrasenaT) {
+      return res.status(400).json({
+        message: "Credenciales inválidas",
+        error: "La contraseña es obligatoria",
+      });
+    }
+
     const trabajador = await Trabajador.findOne({
-      $or: [{ correoT: correoT }, { telefono: telefono }],
-    });
+      $or: [{ correoT: correoT }, { telefonoT: telefonoT }],
+    }).select("+contrasenaT");
 
     if (!trabajador) {
       return res.status(400).json({
