@@ -2,6 +2,8 @@ import { body, param } from "express-validator";
 import { validarCampos } from "./validate-fields.js";
 import { manejoErrores } from "./handle-errors.js";
 import { correoExistente, clienteExistente } from "../helpers/db-validators.js";
+import { validateJWT } from "./validate-jwt.js";
+import { hasRoles } from "./validate-roles.js";
 
 export const agregarClienteValidador = [
     body('nombre').notEmpty().withMessage('El nombre es requerido'),
@@ -28,6 +30,8 @@ export const listarClientesValidador = [
 ];
 
 export const eliminarClientesValidador = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(clienteExistente),
     validarCampos,
@@ -35,6 +39,8 @@ export const eliminarClientesValidador = [
 ];
 
 export const actualizarClientesValidador = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(clienteExistente),
     validarCampos,
