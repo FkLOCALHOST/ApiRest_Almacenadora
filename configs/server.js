@@ -12,6 +12,7 @@ import clientesRoutes from "../src/clientes/clientes.routes.js";
 import { crearEmpleado } from "../src/trabajador/trabajador.controller.js";
 import Trabajador from "../src/trabajador/trabajador.model.js";
 import productosRoutes from "../src/productos/productos.routes.js";
+import authRoutes from "../src/auth/auth.routes.js";
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -31,6 +32,7 @@ const routes = (app) => {
 
     app.use("/almacenadora/v1/productos", productosRoutes);
     
+    app.use("/almacenadora/v1/auth", authRoutes);
 };
 
 const conectarDB = async () => {

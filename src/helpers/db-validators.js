@@ -1,4 +1,7 @@
 import Trabajador from '../trabajador/trabajador.model.js';
+import Productos from "../productos/productos.model.js";
+import Clientes from "../clientes/clientes.model.js";
+import Proveedor from '../proveedor/proveedor.model.js';
 
 export const esRolTrabajador = async (tid = " ") => {
     const trabajador = await Trabajador.findById(tid)
@@ -10,16 +13,31 @@ export const esRolTrabajador = async (tid = " ") => {
     }
 }
 
-import Productos from "../productos/productos.model.js"
+export const emailTExists = async (correoT = '') => {
+    const existe = await Trabajador.findOne({correoT})
+    if(existe){
+        throw new Error(`El correo ${correoT} ya existe`)
+    }
+}
 
+export const trabajadorExists = async (tid = '') => {
+    const existe = await Trabajador.findById(tid)
+    if(!existe){
+        throw new Error(`El trabajador con el ID ${tid} no existe`)
+    }
+}
+export const dpiExists = async (dpiT = '') => {
+    const existe = await Trabajador.findOne({dpiT})
+    if(existe){
+        throw new Error(`El DPI ${dpiT} ya existe`)
+    }
+}
 export const productExists = async (idProducto = " ") => {
     const existe = await Productos.findById(idProducto)
     if(!existe){
         throw new Error("No existe el producto con el ID proporcionado")
     }
 }
-
-import Clientes from "../clientes/clientes.model.js";
 
 export const correoExistente = async (correo = '') => {
     const exite = await Clientes.findOne({correo})
@@ -34,8 +52,6 @@ export const clienteExistente = async (id = '') => {
         throw new Error('No existe un cliente con el ID proporcionado')
     }
 }
-
-import Proveedor from '../proveedor/proveedor.model.js'
 
 export const nameExists = async (name = "") => {
     const exsite = await Proveedor.findOne({name})

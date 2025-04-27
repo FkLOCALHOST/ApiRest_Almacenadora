@@ -1,4 +1,3 @@
-import { de } from 'date-fns/locale';
 import { Schema, model } from 'mongoose';
 
 const clienteSchema = new Schema({

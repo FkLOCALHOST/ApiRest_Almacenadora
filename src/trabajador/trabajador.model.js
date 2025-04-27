@@ -1,36 +1,48 @@
 import {Schema, model} from 'mongoose';
 
 const trabajadorSchema = Schema({
-    nombre: {
+    nombreT: {
         type: String,
         required: [true, 'El nombre es obligatorio'],
         maxLength: [25, 'El nombre no puede superar los 50 caracteres']
     },
-    apellido: {
+    dpi: {
+        type: String,
+        required: [true, 'El DPI es obligatorio'],
+        unique: true,
+        minLength: 13,
+        maxLength: 13
+    },
+    apellidoT: {
         type: String,
         required: [true, 'El apellido es obligatorio'],
         maxLength: [25, 'El apellido no puede superar los 50 caracteres']
     },
-    correo: {
+    correoT: {
         type: String,
         required: [true, 'El correo es obligatorio'],
         unique: true,
     },
-    telefono: {
+    telefonoT: {
         type: String,
         minLength: 8,
         maxLength: 8,
         required: [true, 'El telefono es obligatorio']
     },
-    estado: {
+    estadoT: {
         type: Boolean,
         default: true,
         required: true
     },
-    rendimiento: {
+    rendimientoT: {
         type: Number,
         default: 0,
         required: true
+    },
+    contrasenaT: {
+        type: String,
+        required: [true, 'La contraseña es obligatoria'],
+        minLength: [8, 'La contraseña debe tener al menos 8 caracteres']
     },
     fotoDePerfil: {
         type: String
