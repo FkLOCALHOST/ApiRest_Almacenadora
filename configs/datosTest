@@ -1,0 +1,837 @@
+{
+	"info": {
+		"_postman_id": "7d2062b8-60fe-43da-950a-b9430fc6098e",
+		"name": "Almacenadora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43850384",
+		"_collection_link": "https://diligente.postman.co/workspace/Diligente's-Workspace~04a27ab5-ab56-46fc-8722-f1eb979f59f2/collection/43850384-7d2062b8-60fe-43da-950a-b9430fc6098e?action=share&source=collection_link&creator=43850384"
+	},
+	"item": [
+		{
+			"name": "clientes",
+			"item": [
+				{
+					"name": "addClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Brau\",\r\n    \"apellido\": \"Echeverria\",\r\n    \"telefono\":\"12345678\",\r\n    \"correo\":\"brau@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/agregarClientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"agregarClientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addClient2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"apellido\": \"Morales\",\r\n    \"telefono\":\"12345678\",\r\n    \"correo\":\"cmorales@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/agregarClientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"agregarClientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/obtenerClientePorId/680e488b9b18a59236926f2b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"obtenerClientePorId",
+								"680e488b9b18a59236926f2b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/eliminarClientes/680e488b9b18a59236926f2b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"eliminarClientes",
+								"680e488b9b18a59236926f2b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Carlos\",\r\n    \"apellido\": \"Morales\",\r\n    \"telefono\":\"12345678\",\r\n    \"correo\":\"cmorales@gmail.com\",\r\n    \"estado\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes//actualizarClientes/680e488b9b18a59236926f2b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"",
+								"actualizarClientes",
+								"680e488b9b18a59236926f2b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "productos",
+			"item": [
+				{
+					"name": "addProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreProducto\":\"Leche Formost\",\r\n    \"descripcion\":\"Leche en bolsa de 1 litro\",\r\n    \"precio\":\"9.5\",\r\n    \"categoria\":\"Alimentos\",\r\n    \"urlImagen\":\"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.paiz.com.gt%2Fleche-foremost-entera-bolsita-900ml%2Fp&psig=AOvVaw1m2kdhSlkAkfFhIVyvAusG&ust=1745854096633000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKj7srzD-IwDFQAAAAAdAAAAABAE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/agregarProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"agregarProducto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProduct2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreProducto\":\"Computadora Dell\",\r\n    \"descripcion\":\"Intel core i5 10 gen, 16 gb ram, medio tera ssd\",\r\n    \"precio\":\"1500\",\r\n    \"categoria\":\"Tecnologia\",\r\n    \"urlImagen\":\"https://www.google.com/url?sa=i&url=https%3A%2F%2Fintelite.gt%2Fproducto%2Fpc-dell%2F&psig=AOvVaw2KXzvsPRs2l8kzG4EsNNkk&ust=1745855232729000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLCfs9rH-IwDFQAAAAAdAAAAABAE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/agregarProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"agregarProducto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/listarProductos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"listarProductos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/buscarProducto/680e519140d17b15d0df62da",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"buscarProducto",
+								"680e519140d17b15d0df62da"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"descripcion\": \"Intel core i5 10 gen, 8 gb ram, 1/2 tera ssd\",\r\n    \"precio\": 1550\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/actualizarProducto/680e519140d17b15d0df62da",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"actualizarProducto",
+								"680e519140d17b15d0df62da"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/eliminarProducto/680e519140d17b15d0df62da",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"eliminarProducto",
+								"680e519140d17b15d0df62da"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "proveedores",
+			"item": [
+				{
+					"name": "addProveedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Foremost\",\r\n    \"telefono\":\"123450796\",\r\n    \"direccion\":\"Foremost@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProveedor2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\":\"Kerns\",\r\n    \"telefono\":\"98765432\",\r\n    \"direccion\":\"Kerns@gmail.com\"\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/buscar/680e5a6ab2fda7dd98fbaf6b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"buscar",
+								"680e5a6ab2fda7dd98fbaf6b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"telefono\":\"1111122222\",\r\n    \"direccion\":\"zona 15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/modificar/680e5aa3b2fda7dd98fbaf73",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"modificar",
+								"680e5aa3b2fda7dd98fbaf73"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/eliminar/680e5aa3b2fda7dd98fbaf73",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"eliminar",
+								"680e5aa3b2fda7dd98fbaf73"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "trabajadores",
+			"item": [
+				{
+					"name": "trabajadores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fotoDePerfil",
+									"type": "file",
+									"src": "/C:/Users/Rafa/Downloads/xd.jpg"
+								},
+								{
+									"key": "username",
+									"value": "user1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "brau@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/trabajador/crearEmpleado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"trabajador",
+								"crearEmpleado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2ODBkYjRhNWE2ZWE0MDk5NmNkMjdkYjkiLCJpYXQiOjE3NDU3MjkxMDAsImV4cCI6MTc0NTczMjcwMH0.J_h6VJnkrU9t0JfZgnnDEBDOW8ewe0NJBJHK0o3rodA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Brau\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"brau@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/trabajador/obtenerTrabajadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"trabajador",
+								"obtenerTrabajadores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fotoDePerfil",
+									"type": "file",
+									"src": "/C:/Users/Rafa/Downloads/xd.jpg"
+								},
+								{
+									"key": "nombreT",
+									"value": "Luis",
+									"type": "text"
+								},
+								{
+									"key": "dpi",
+									"value": "1123456789112",
+									"type": "text"
+								},
+								{
+									"key": "apellidoT",
+									"value": "Cordova",
+									"type": "text"
+								},
+								{
+									"key": "correoT",
+									"value": "lc@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "telefonoT",
+									"value": "a",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123!asSa",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"correoT\": \"dsacol10@gmail.com\",\r\n  \"contrasenaT\": \"123Abc!@\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"correoT\": \"lc2020@gmail.com\",\r\n  \"contrasenaT\": \"123!asSa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
