@@ -32,6 +32,7 @@ export const dpiExists = async (dpiT = '') => {
         throw new Error(`El DPI ${dpiT} ya existe`)
     }
 }
+
 export const productExists = async (idProducto = " ") => {
     const existe = await Productos.findById(idProducto)
     if(!existe){

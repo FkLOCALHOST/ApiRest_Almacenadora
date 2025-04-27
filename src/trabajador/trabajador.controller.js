@@ -1,29 +1,6 @@
 import Trabajador from "./trabajador.model.js";
 import { validateJWT } from "../middlewares/validate-jwt.js";
 
-export const crearEmpleado = [
-  validateJWT,
-  async (req, res) => {
-    try {
-      const data = req.body;
-      let fotoDePerfil = req.file ? req.file.filename : null;
-      data.fotoDePerfil = fotoDePerfil;
-
-      const trabajador = await Trabajador.create(data);
-
-      return res.status(201).json({
-        message: "El empleado fue creado con éxito",
-        nombre: trabajador.nombre,
-        apellido: trabajador.apellido,
-      });
-    } catch (err) {
-      return res.status(500).json({
-        message: "Error al crear el empleado",
-        error: err.message,
-      });
-    }
-  },
-];
 
 export const obtenerTrabajadores = [
   validateJWT,

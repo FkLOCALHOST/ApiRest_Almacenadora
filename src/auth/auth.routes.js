@@ -5,6 +5,7 @@ import {
   loginValidator,
 } from "../middlewares/trabajador-validators.js";
 import {  subirFotoDeTrabajador } from "../middlewares/multer-uploads.js";
+import { deleteFileOnError } from "../middlewares/delete-file-on-error.js";
 
 const router = Router();
 

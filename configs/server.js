@@ -9,7 +9,7 @@ import trabajadorRoutes from "../src/trabajador/trabajador.routes.js"
 import apiLimiter from "../src/middlewares/rate-limit-validator.js"
 import proveedorRoutes from "../src/proveedor/proveedor.routes.js"
 import clientesRoutes from "../src/clientes/clientes.routes.js";
-import { crearEmpleado } from "../src/trabajador/trabajador.controller.js";
+import { register } from "../src/auth/auth.controller.js";
 import Trabajador from "../src/trabajador/trabajador.model.js";
 import productosRoutes from "../src/productos/productos.routes.js";
 import authRoutes from "../src/auth/auth.routes.js";
@@ -46,19 +46,24 @@ const conectarDB = async () => {
 
 const inicializarAdmin = async () => {
     try {
-        const adminExists = await Trabajador.findOne({ role: "ADMIN_ROLE" });   
+        const adminExists = await Trabajador.findOne({ role: "ADMIN_ROLE" });
         if (!adminExists) {
             const adminUser = {
-                nombre: "Daniel",
-                apellido: "Sacol",
-                correo: "dsacol10@gmail.com",
-                telefono: "33815217",
-                estado: true,
-                role: "ADMIN_ROLE"
+                nombreT: "Daniel",
+                apellidoT: "Sacol",
+                correoT: "dsacol10@gmail.com",
+                telefonoT: "33815217",
+                contrasenaT: "123Abc!@",
+                dpi: "1234567890123",
+                estadoT: true,
+                role: "ADMIN_ROLE",
             };
-            await crearEmpleado({ body: adminUser }, { status: () => ({ json: () => {} }) });
+            await register(
+                { body: adminUser },
+                { status: () => ({ json: () => {} }) }
+            );
             console.log("Administrador creado con éxito");
-        } 
+        }
     } catch (error) {
         console.error("Error al crear el Administrador:", error);
     }
