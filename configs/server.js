@@ -19,6 +19,7 @@ import proveedorRoutes from "../src/proveedor/proveedor.routes.js"
 
 import apiLimiter from "../src/middlewares/rate-limit-validator.js";
 import clientesRoutes from "../src/clientes/clientes.routes.js";
+import {swaggerDocs, swaggerUi} from "./swagger.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ const routes = (app) => {
 
 
     app.use("/bodega/v1/clientes", clientesRoutes)
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
     
 };
