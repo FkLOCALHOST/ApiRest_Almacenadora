@@ -87,3 +87,23 @@ export const listarLotes = async (req, res) => {
         })
     }
 }
+
+export const eliminarLote = async (req, res) => {
+    try{
+        const { id } = req.params
+
+        const lote = await Lote.findByIdAndUpdate(id, { estado: false}, {new: true})
+
+        return res.status(200).json({
+            success: true,
+            message: 'Lote eliminado',
+            lote
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al eliminar el lote',
+            error: err.message
+        })
+    }
+}
