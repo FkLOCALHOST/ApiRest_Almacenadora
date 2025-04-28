@@ -36,3 +36,28 @@ export const crearLote = async (req, res) => {
         });
     }
 };
+
+export const obtenerLotePorId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const lote = await Lote.findById(id)
+
+        if(!lote){
+            return res.status(404).json({
+                success: false,
+                message: 'Lote no encontrado'
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            lote
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al obtener el lote',
+            error: err.message
+        })
+    }
+}
