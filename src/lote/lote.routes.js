@@ -10,7 +10,7 @@ router.get("/obtenerLotePorId/:id", obtenerLotePorIdValidador, obtenerLotePorId)
 
 router.get("/", listarLotesValidador, listarLotes );
 
-router.delete("/eliminarLote/:uid", eliminarLoteValidador, eliminarLote);
+router.delete("/eliminarLote/:id", eliminarLoteValidador, eliminarLote);
 
 router.put("/actualizarLote/:id", actualizarLotesValidador, actualizarLote)
 

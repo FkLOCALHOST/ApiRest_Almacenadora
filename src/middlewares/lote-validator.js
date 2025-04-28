@@ -29,8 +29,7 @@ export const listarLotesValidador = [
 ];
 
 export const eliminarLoteValidador = [
-    validateJWT,
-    hasRoles("ADMIN_ROLE"),
+    
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(loteExistente),
     validarCampos,
@@ -38,7 +37,8 @@ export const eliminarLoteValidador = [
 ];
 
 export const actualizarLotesValidador = [
-    
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(loteExistente),
     validarCampos,
