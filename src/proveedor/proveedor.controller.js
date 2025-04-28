@@ -96,6 +96,7 @@ export const actualizarProveedor = async (req, res) => {
     }
   }
 
+
 export const eliminarProveedor = async (req, res) => {
     try{
         const {proveedorId} = req.params
@@ -116,6 +117,7 @@ export const eliminarProveedor = async (req, res) => {
     }
 }
 
+
 export const listarProveedores = async (req, res) => {
     try {
         const { limite = 10, desde = 0 } = req.query
@@ -135,6 +137,7 @@ export const listarProveedores = async (req, res) => {
         })
 
     } catch (err) {
+
         res.status(500).json({
             success: false,
             message: 'Error al listar los proveedores',
@@ -168,4 +171,5 @@ export const buscarProveedor = async (req, res) => {
       })
     }
 }
+
 

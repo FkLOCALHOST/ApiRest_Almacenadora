@@ -1,3 +1,4 @@
+
 import { handleErrors } from "./handle-errors.js";
 import { validarCampos } from "./validate-fields.js";
 import {
@@ -86,3 +87,11 @@ export const buscarProveedorValidator = [
   validarCampos,
   handleErrors,
 ]
+
+
+
+
+
+
+
+
