@@ -61,3 +61,29 @@ export const obtenerLotePorId = async (req, res) => {
         })
     }
 }
+
+export const listarLotes = async (req, res) => {
+    try{
+        const { limite = 10, desde = 0 } = req.query
+        const query = { estado: true }
+        
+        const [total, lotes] = await Promise.all([
+            Lote.countDocuments(query),
+            Lote.find(query)
+                    .skip(Number(desde))
+                    .limit(Number(limite))
+        ])
+
+        return res.status(200).json({
+            success: true,
+            total,
+            lotes
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al obtener los Lotes',
+            error: err.message
+        })
+    }
+}

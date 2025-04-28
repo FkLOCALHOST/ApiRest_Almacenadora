@@ -20,3 +20,8 @@ export const obtenerLotePorIdValidador = [
     validarCampos,
     handleErrors
 ];
+
+export const listarLotesValidador = [
+    validarCampos,
+    handleErrors
+];
