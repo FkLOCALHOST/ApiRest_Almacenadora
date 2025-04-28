@@ -4,6 +4,8 @@ const loteSchema =  new Schema({
     numeroLote:{
         type: String,
         required: true,
+        minLenght: 4,
+        maxLength: 15,
         unique: true 
     },
     cantidad: {
@@ -18,7 +20,7 @@ const loteSchema =  new Schema({
         type: [{
             productoId: {
                 type: Schema.Types.ObjectId,
-                ref: 'Productos',
+                ref: 'Products',
                 required: true
             }
         }]
@@ -33,4 +35,4 @@ const loteSchema =  new Schema({
     timestamps: true
 })
 
-export default model('Cliente', loteSchema)
+export default model('Lote', loteSchema)
