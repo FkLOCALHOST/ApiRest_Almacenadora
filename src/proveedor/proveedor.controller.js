@@ -177,8 +177,35 @@ export const buscarProveedor = async (req, res) => {
 
 
 export const generarPDFProveedores = async (req, res) => {
-  try {
-    const proveedores = await Proveedor.find({ estado: 'ACTIVO' });
+    try {
+      const { filtro } = req.query;
+  
+      const query = { estado: 'ACTIVO' };
+  
+      let sortOptions = {};
+
+      switch (filtro) {
+        case 'A-Z':
+          sortOptions = { nombre: 1 };
+          break;
+        case 'Z-A':
+          sortOptions = { nombre: -1 };
+          break;
+        case 'reciente': 
+          sortOptions = { createdAt: -1 };
+          break;
+        case 'antiguo': 
+          sortOptions = { createdAt: 1 };
+          break;
+        
+
+        
+        default:
+          sortOptions = {}; 
+      }
+  
+      const proveedores = await Proveedor.find(query).sort(sortOptions);
+  
 
     if (proveedores.length === 0) {
       return res.status(404).json({
@@ -224,4 +251,7 @@ export const generarPDFProveedores = async (req, res) => {
       error: err.message
     });
   }
-};
+}
+
+  
+
