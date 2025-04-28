@@ -1,8 +1,9 @@
 import { hash } from "bcrypt";
-import Clientes from "./clientes.model.js"
+import Cliente from "./clientes.model.js"
 import fs from "fs/promises"
 import { join, dirname } from "path"
 import { fileURLToPath } from "url";
+import PDFDocument from "pdfkit"
 
 const  __dirname = dirname(fileURLToPath (import.meta.url))
 
@@ -117,3 +118,73 @@ export const actualizarCliente = async (req, res) => {
         })
     }
 }
+
+export const generarPDFClientes = async (req, res) => {
+    try {
+      const { filtro } = req.query
+  
+      const query = { estado: true }
+  
+      let sortOptions = {}
+  
+      switch (filtro) {
+        case 'A-Z':
+          sortOptions = { nombre: 1 }
+          break;
+        case 'Z-A':
+          sortOptions = { nombre: -1 }
+          break;
+        case 'reciente':
+          sortOptions = { createdAt: -1 }
+          break;
+        case 'antiguo':
+          sortOptions = { createdAt: 1 }
+          break;
+        default:
+          sortOptions = {}
+      }
+
+      const clientes = await Cliente.find(query).sort(sortOptions)
+  
+      if (clientes.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'No hay clientes activos para mostrar en el PDF.'
+        })
+      }
+  
+      res.setHeader('Content-Type', 'application/pdf')
+      res.setHeader('Content-Disposition', 'attachment; filename=clientes.pdf')
+  
+      const doc = new PDFDocument({ margin: 30 })
+      doc.pipe(res)
+  
+      doc.fontSize(18).text('Listado de Clientes Activos', { align: 'center' })
+      doc.moveDown();
+  
+      doc.fontSize(12).text('Nombre', 50, doc.y)
+      doc.text('Apellido', 200, doc.y)
+      doc.text('Correo', 350, doc.y)
+      doc.text('Teléfono', 500, doc.y)
+      doc.moveDown()
+  
+      doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke()
+  
+      clientes.forEach((cliente) => {
+        doc.fontSize(10)
+          .text(cliente.nombre, 50, doc.y + 10)
+          .text(cliente.apellido, 200, doc.y)
+          .text(cliente.correo, 350, doc.y)
+          .text(cliente.telefono, 500, doc.y)
+      })
+  
+      doc.end()
+  
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al generar el PDF de clientes',
+        error: err.message
+      })
+    }
+  }
