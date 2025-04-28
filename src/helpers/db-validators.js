@@ -1,10 +1,7 @@
 import Trabajador from '../trabajador/trabajador.model.js';
-<<<<<<< HEAD
 import Productos from "../productos/productos.model.js";
 import Clientes from "../clientes/clientes.model.js";
 import Proveedor from '../proveedor/proveedor.model.js';
-=======
->>>>>>> 1e9356944e29b65310d6cd4f96c9368b2d190e5e
 
 export const esRolTrabajador = async (tid = " ") => {
     const trabajador = await Trabajador.findById(tid)
@@ -16,7 +13,6 @@ export const esRolTrabajador = async (tid = " ") => {
     }
 }
 
-<<<<<<< HEAD
 export const emailTExists = async (correoT = '') => {
     const existe = await Trabajador.findOne({correoT})
     if(existe){
@@ -36,9 +32,6 @@ export const dpiExists = async (dpiT = '') => {
         throw new Error(`El DPI ${dpiT} ya existe`)
     }
 }
-=======
-import Productos from "../productos/productos.model.js"
->>>>>>> 1e9356944e29b65310d6cd4f96c9368b2d190e5e
 
 export const productExists = async (idProducto = " ") => {
     const existe = await Productos.findById(idProducto)
@@ -47,11 +40,6 @@ export const productExists = async (idProducto = " ") => {
     }
 }
 
-<<<<<<< HEAD
-=======
-import Clientes from "../clientes/clientes.model.js";
-
->>>>>>> 1e9356944e29b65310d6cd4f96c9368b2d190e5e
 export const correoExistente = async (correo = '') => {
     const exite = await Clientes.findOne({correo})
     if(exite){
@@ -66,7 +54,6 @@ export const clienteExistente = async (id = '') => {
     }
 }
 
-<<<<<<< HEAD
 export const nameExists = async (name = "") => {
     const exsite = await Proveedor.findOne({name})
     if (exsite) {
@@ -87,5 +74,3 @@ export const direccionExists = async (direccion = "") => {
         throw new Error(`La direccion ${direccion} ya existe`)
     }
 }
-=======
->>>>>>> 1e9356944e29b65310d6cd4f96c9368b2d190e5e

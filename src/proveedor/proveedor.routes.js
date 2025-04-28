@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { agregarProveedor, eliminarProveedor, listarProveedores, actualizarProveedor, cambiarEstado, buscarProveedor } from "./proveedor.controller.js"
+import { generarPDFProveedores, agregarProveedor, eliminarProveedor, listarProveedores, actualizarProveedor, cambiarEstado, buscarProveedor } from "./proveedor.controller.js"
 import { agregarProveedorValidator, actualizarProveedorValidator, cambiarEstadoValidator, buscarProveedorValidator, eliminarProveedorValidator  } from "../middlewares/proveedor-validator.js"
 
 const router = Router()
@@ -12,6 +12,8 @@ router.patch('/cambiar-estado/:proveedorId', cambiarEstadoValidator, cambiarEsta
 router.delete('/eliminar/:proveedorId', eliminarProveedorValidator, eliminarProveedor)
 router.get('/listar', listarProveedores)
 router.get('/buscar/:nombre', buscarProveedorValidator, buscarProveedor)
+
+router.get('/generarReporte', generarPDFProveedores)
 
 
 export default router

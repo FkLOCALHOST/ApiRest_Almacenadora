@@ -1,6 +1,9 @@
 'use strict'
 
 import Proveedor from './proveedor.model.js'
+import PDFDocument from "pdfkit"
+import fs from "fs"
+import path from "path"
 
 
 export const agregarProveedor = async (req, res) =>{
@@ -173,3 +176,52 @@ export const buscarProveedor = async (req, res) => {
 }
 
 
+export const generarPDFProveedores = async (req, res) => {
+  try {
+    const proveedores = await Proveedor.find({ estado: 'ACTIVO' });
+
+    if (proveedores.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No hay proveedores activos para mostrar en el PDF.'
+      });
+    }
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=proveedores.pdf');
+
+    const doc = new PDFDocument({ margin: 30 });
+    doc.pipe(res); 
+
+   
+    doc.fontSize(18).text('Listado de Proveedores Activos', { align: 'center' });
+    doc.moveDown();
+
+
+    doc.fontSize(12).text('Nombre', 50, doc.y);
+    doc.text('Teléfono', 200, doc.y);
+    doc.text('Dirección', 300, doc.y);
+    doc.text('Estado', 500, doc.y);
+    doc.moveDown();
+
+
+    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
+
+    proveedores.forEach((p) => {
+      doc.fontSize(10)
+        .text(p.nombre, 50, doc.y + 10)
+        .text(p.telefono.toString(), 200, doc.y)
+        .text(p.direccion, 300, doc.y)
+        .text(p.estado, 500, doc.y);
+    });
+
+    doc.end(); 
+
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Error al generar el PDF de proveedores',
+      error: err.message
+    });
+  }
+};
