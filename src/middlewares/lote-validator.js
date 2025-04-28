@@ -36,3 +36,11 @@ export const eliminarLoteValidador = [
     validarCampos,
     handleErrors
 ];
+
+export const actualizarLotesValidador = [
+    
+    param('id').isMongoId().withMessage('El ID no es valido'),
+    param('id').custom(loteExistente),
+    validarCampos,
+    handleErrors
+];
