@@ -5,7 +5,7 @@ import PDFDocument from "pdfkit";
 export const obtenerTrabajadores = [
   validateJWT,
 
-  async (req, res) => {º
+  async (req, res) => {
     try {
       const { limit = 10, from = 0 } = req.query;
       const query = { status: true };

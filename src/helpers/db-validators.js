@@ -74,3 +74,11 @@ export const direccionExists = async (direccion = "") => {
         throw new Error(`La direccion ${direccion} ya existe`)
     }
 }
+
+
+export const loteExistente = async (id = '') => {
+    const existe = await Lote.findById(id)
+    if(!existe){
+        throw new Error('No existe un lote con el ID proporcionado')
+    }
+}
