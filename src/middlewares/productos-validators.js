@@ -7,8 +7,8 @@ import { hasRoles } from "./validate-roles.js";
 
 
 export const createProductValidator = [
-    validateJWT,
-    hasRoles("ADMIN_ROLE"),
+    /*validateJWT,
+    hasRoles("ADMIN_ROLE"),*/
     body("nombreProducto").notEmpty().withMessage("El nombre del producto es requerido"),
     body("descripcion").notEmpty().withMessage("La descripción es requerida"),
     body("precio").notEmpty().withMessage("El precio es requerido"),

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto } from "./productos.controller.js";
 import { createProductValidator, getProductByIdValidator,
-         updateProductValidator, deleteCategoryValidator } from "../middlewares/products-validators.js";
+         updateProductValidator, deleteCategoryValidator } from "../middlewares/productos-validators.js";
 
 const router = Router();
 
