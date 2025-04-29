@@ -177,35 +177,30 @@ export const buscarProveedor = async (req, res) => {
 
 
 export const generarPDFProveedores = async (req, res) => {
-    try {
-      const { filtro } = req.query;
-  
-      const query = { estado: 'ACTIVO' };
-  
-      let sortOptions = {};
+  try {
+    const { filtro } = req.query;
 
-      switch (filtro) {
-        case 'A-Z':
-          sortOptions = { nombre: 1 };
-          break;
-        case 'Z-A':
-          sortOptions = { nombre: -1 };
-          break;
-        case 'reciente': 
-          sortOptions = { createdAt: -1 };
-          break;
-        case 'antiguo': 
-          sortOptions = { createdAt: 1 };
-          break;
-        
+    const query = { estado: 'ACTIVO' };
+    let sortOptions = {};
 
-        
-        default:
-          sortOptions = {}; 
-      }
-  
-      const proveedores = await Proveedor.find(query).sort(sortOptions);
-  
+    switch (filtro) {
+      case 'A-Z':
+        sortOptions = { nombre: 1 };
+        break;
+      case 'Z-A':
+        sortOptions = { nombre: -1 };
+        break;
+      case 'reciente':
+        sortOptions = { createdAt: -1 };
+        break;
+      case 'antiguo':
+        sortOptions = { createdAt: 1 };
+        break;
+      default:
+        sortOptions = {};
+    }
+
+    const proveedores = await Proveedor.find(query).sort(sortOptions);
 
     if (proveedores.length === 0) {
       return res.status(404).json({
@@ -218,31 +213,42 @@ export const generarPDFProveedores = async (req, res) => {
     res.setHeader('Content-Disposition', 'attachment; filename=proveedores.pdf');
 
     const doc = new PDFDocument({ margin: 30 });
-    doc.pipe(res); 
+    doc.pipe(res);
 
-   
     doc.fontSize(18).text('Listado de Proveedores Activos', { align: 'center' });
-    doc.moveDown();
+    doc.moveDown(2);
 
+    const positions = {
+      nombre: 50,
+      telefono: 200,
+      direccion: 300,
+      estado: 500,
+    };
 
-    doc.fontSize(12).text('Nombre', 50, doc.y);
-    doc.text('Teléfono', 200, doc.y);
-    doc.text('Dirección', 300, doc.y);
-    doc.text('Estado', 500, doc.y);
-    doc.moveDown();
+    const startY = doc.y;
+    doc.fontSize(12)
+      .text('Nombre', positions.nombre, startY)
+      .text('Teléfono', positions.telefono, startY)
+      .text('Dirección', positions.direccion, startY)
+      .text('Estado', positions.estado, startY);
 
+    doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
 
-    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
+    let currentY = startY + 25; 
 
     proveedores.forEach((p) => {
       doc.fontSize(10)
-        .text(p.nombre, 50, doc.y + 10)
-        .text(p.telefono.toString(), 200, doc.y)
-        .text(p.direccion, 300, doc.y)
-        .text(p.estado, 500, doc.y);
+        .text(p.nombre, positions.nombre, currentY)
+        .text(p.telefono.toString(), positions.telefono, currentY)
+        .text(p.direccion, positions.direccion, currentY, { width: 180, ellipsis: true }) 
+        .text(p.estado, positions.estado, currentY);
+
+      doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
+
+      currentY += 25; 
     });
 
-    doc.end(); 
+    doc.end();
 
   } catch (err) {
     res.status(500).json({
@@ -251,7 +257,7 @@ export const generarPDFProveedores = async (req, res) => {
       error: err.message
     });
   }
-}
+};
 
   
 

@@ -1,5 +1,5 @@
 import { hash } from "bcrypt";
-import Cliente from "./clientes.model.js"
+import Clientes from "./clientes.model.js"
 import fs from "fs/promises"
 import { join, dirname } from "path"
 import { fileURLToPath } from "url";
@@ -119,72 +119,87 @@ export const actualizarCliente = async (req, res) => {
     }
 }
 
-export const generarPDFClientes = async (req, res) => {
+export const generarPDFClientes = async (req, res) => { 
     try {
-      const { filtro } = req.query
+      const { filtro } = req.query;
   
-      const query = { estado: true }
-  
-      let sortOptions = {}
+      const query = { estado: true };
+      let sortOptions = {};
   
       switch (filtro) {
         case 'A-Z':
-          sortOptions = { nombre: 1 }
+          sortOptions = { nombre: 1 };
           break;
         case 'Z-A':
-          sortOptions = { nombre: -1 }
+          sortOptions = { nombre: -1 };
           break;
         case 'reciente':
-          sortOptions = { createdAt: -1 }
+          sortOptions = { createdAt: -1 };
           break;
         case 'antiguo':
-          sortOptions = { createdAt: 1 }
+          sortOptions = { createdAt: 1 };
           break;
         default:
-          sortOptions = {}
+          sortOptions = {};
       }
-
-      const clientes = await Cliente.find(query).sort(sortOptions)
+  
+      const clientes = await Clientes.find(query).sort(sortOptions);
   
       if (clientes.length === 0) {
         return res.status(404).json({
           success: false,
           message: 'No hay clientes activos para mostrar en el PDF.'
-        })
+        });
       }
   
-      res.setHeader('Content-Type', 'application/pdf')
-      res.setHeader('Content-Disposition', 'attachment; filename=clientes.pdf')
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=clientes.pdf');
   
-      const doc = new PDFDocument({ margin: 30 })
-      doc.pipe(res)
+      const doc = new PDFDocument({ margin: 30 });
+      doc.pipe(res);
   
-      doc.fontSize(18).text('Listado de Clientes Activos', { align: 'center' })
-      doc.moveDown();
+      doc.fontSize(18).text('Listado de Clientes Activos', { align: 'center' });
+      doc.moveDown(2);
   
-      doc.fontSize(12).text('Nombre', 50, doc.y)
-      doc.text('Apellido', 200, doc.y)
-      doc.text('Correo', 350, doc.y)
-      doc.text('Teléfono', 500, doc.y)
-      doc.moveDown()
+      const positions = {
+        nombre: 50,
+        apellido: 150,
+        correo: 280,
+        telefono: 450,
+      };
   
-      doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke()
+      const startY = doc.y;
+      doc.fontSize(12)
+        .text('Nombre', positions.nombre, startY)
+        .text('Apellido', positions.apellido, startY)
+        .text('Correo', positions.correo, startY)
+        .text('Teléfono', positions.telefono, startY);
+  
+      doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
+  
+      let currentY = startY + 25;
   
       clientes.forEach((cliente) => {
         doc.fontSize(10)
-          .text(cliente.nombre, 50, doc.y + 10)
-          .text(cliente.apellido, 200, doc.y)
-          .text(cliente.correo, 350, doc.y)
-          .text(cliente.telefono, 500, doc.y)
-      })
+          .text(cliente.nombre, positions.nombre, currentY)
+          .text(cliente.apellido, positions.apellido, currentY)
+          .text(cliente.correo || '-', positions.correo, currentY, {
+            width: 150,
+            ellipsis: true
+          })
+          .text(cliente.telefono || '-', positions.telefono, currentY);
   
-      doc.end()
+        doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
+        currentY += 25;
+      });
+  
+      doc.end();
   
     } catch (err) {
       res.status(500).json({
         success: false,
         message: 'Error al generar el PDF de clientes',
         error: err.message
-      })
+      });
     }
-  }
+  };
