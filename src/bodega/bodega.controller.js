@@ -216,8 +216,6 @@ export const obtenerBodegasPdf = async (req, res) => {
     }
 };
 
-
-
 export const obtenerBodegaPdf = async (req, res) => {
     try {
         const { idBodega } = req.params;
