@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto } from "./productos.controller.js";
 import { createProductValidator, getProductByIdValidator,
-         updateProductValidator, deleteCategoryValidator } from "../middlewares/productos-validators.js";
+         updateProductValidator, deleteProductValidator } from "../middlewares/productos-validators.js";
 
 const router = Router();
 
@@ -13,6 +13,6 @@ router.get("/buscarProducto/:idProducto", getProductByIdValidator, buscarProduct
 
 router.put("/actualizarProducto/:idProducto", updateProductValidator, actualizarProducto);
 
-router.delete("/eliminarProducto/:idProducto", deleteCategoryValidator, eliminarProducto);
+router.delete("/eliminarProducto/:idProducto", deleteProductValidator, eliminarProducto);
 
 export default router;

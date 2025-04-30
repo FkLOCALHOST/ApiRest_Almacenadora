@@ -34,13 +34,19 @@ export const agregarBodega = async(req, res) =>{
     }
 }
 
-export const obtenerBodegas = async(req, res) => {
+export const obtenerBodegas = async (req, res) => {
     try {
-        const bodegas = await Bodega.find()
-            .populate('lote', 'numeroLote cantidad fechaCaducidad productos estado')         
-            .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT'); 
 
-        if (!bodegas || bodegas.length === 0) {
+        const query = { estado: true };
+
+        const [total, bodegas] = await Promise.all([
+            Bodega.countDocuments(query),
+            Bodega.find(query)
+                .populate('lote', 'numeroLote cantidad fechaCaducidad productos estado')
+                .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT')
+        ]);
+
+        if (bodegas.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: "No se encontraron registros de la bodega"
@@ -49,11 +55,11 @@ export const obtenerBodegas = async(req, res) => {
 
         return res.status(200).json({
             success: true,
-            total: bodegas.length,
+            total,
             bodegas
         });
 
-    } catch(err) {
+    }catch(err){
         return res.status(500).json({
             success: false,
             message: "Error al obtener los registros en bodega",
@@ -158,7 +164,7 @@ export const obtenerBodegasPdf = async (req, res) => {
         }
 
         const doc = new PDFDocument({ margin: 40, size: 'A4' });
-        const outputPath = path.join(__dirname, `../../public/uploads/bodegas-listado-${Date.now()}.pdf`);
+        const outputPath = path.join(__dirname, `../../public/uploads/bodegas-listado${Date.now()}.pdf`);
         doc.pipe(fs.createWriteStream(outputPath));
 
         
@@ -215,6 +221,29 @@ export const obtenerBodegasPdf = async (req, res) => {
         });
     }
 };
+
+export const eliminarBodega = async (req, res) => {
+    try{
+        const { idBodega } = req.params
+
+        const bodega = await Bodega.findByIdAndUpdate(idBodega, { estado: false}, {new: true})
+
+        return res.status(200).json({
+            success: true,
+            message: 'Bodega eliminada',
+            bodega
+        })
+
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al eliminar la bodega',
+            error: err.message
+        })
+    }
+}
+
+
 
 export const obtenerBodegaPdf = async (req, res) => {
     try {
@@ -284,6 +313,79 @@ export const obtenerBodegaPdf = async (req, res) => {
     }
 };
 
+export const obtenerBodegasPorFechaIngreso = async (req, res) => {
+    try {
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: true };
+
+        const [total, bodegas] = await Promise.all([
+            Bodega.countDocuments(query),
+            Bodega.find(query)
+                .sort({ fechaIngreso: -1 })
+                .skip(Number(desde))
+                .limit(Number(limite))
+                .populate('lote', 'numeroLote cantidad fechaCaducidad productos estado')
+                .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT')
+        ]);
+
+        if (bodegas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No se encontraron registros de la bodega"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            total,
+            bodegas
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Error al obtener los registros en bodega",
+            error: err.message
+        });
+    }
+};
+
+export const obtenerBodegasPorFechaSalida = async (req, res) => {
+    try {
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: true };
+
+        const [total, bodegas] = await Promise.all([
+            Bodega.countDocuments(query),
+            Bodega.find(query)
+                .sort({ fechaSalida: -1 })
+                .skip(Number(desde))
+                .limit(Number(limite))
+                .populate('lote', 'numeroLote cantidad fechaCaducidad productos estado')
+                .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT')
+        ]);
+
+        if (bodegas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No se encontraron registros de la bodega"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            total,
+            bodegas
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            success: false,
+            message: "Error al obtener los registros en bodega",
+            error: err.message
+        });
+    }
+};
 
 
 

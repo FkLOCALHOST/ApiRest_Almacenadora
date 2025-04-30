@@ -13,7 +13,7 @@ import { register } from "../src/auth/auth.controller.js";
 import Trabajador from "../src/trabajador/trabajador.model.js";
 import productosRoutes from "../src/productos/productos.routes.js";
 import authRoutes from "../src/auth/auth.routes.js";
-
+import loteRoutes from "../src/lote/lote.routes.js"
 import bodegaRoutes from "../src/bodega/bodega.routes.js"
 
 const middlewares = (app) => {
@@ -35,6 +35,8 @@ const routes = (app) => {
     app.use("/almacenadora/v1/productos", productosRoutes);
     
     app.use("/almacenadora/v1/auth", authRoutes);
+
+    app.use("/almacenadora/v1/lote", loteRoutes)
 
     app.use("/almacenadora/v1/bodega", bodegaRoutes)
 };

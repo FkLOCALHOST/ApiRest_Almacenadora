@@ -27,5 +27,15 @@ export const buscarBodegaValidator = [
     handleErrors
 ];
 
+export const eliminarBodegaValidador = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    param('idBodega').isMongoId().withMessage('No es un ID válido de MongoDB'),
+    param('idBodega').custom(bodegaExists),
+    validarCampos,
+    handleErrors
+];
+
+
 
 

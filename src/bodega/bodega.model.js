@@ -18,6 +18,10 @@ const bodegaSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Trabajador',
         required: [true, "El trabajador es requerido"]
+    },
+    estado:{
+        type: Boolean,
+        default: true
     }
 },
 {

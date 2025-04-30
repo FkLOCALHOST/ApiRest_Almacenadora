@@ -2,8 +2,8 @@ import Trabajador from '../trabajador/trabajador.model.js';
 import Productos from "../productos/productos.model.js";
 import Clientes from "../clientes/clientes.model.js";
 import Proveedor from '../proveedor/proveedor.model.js';
-import Lote from "../lote/lote.model.js"
 import Bodega from '../bodega/bodega.model.js';
+import Lote from '../lote/lote.model.js'
 
 export const esRolTrabajador = async (tid = " ") => {
     const trabajador = await Trabajador.findById(tid)
@@ -81,5 +81,12 @@ export const bodegaExists = async (idBodega = '') => {
     const existe = await Bodega.findById(idBodega)
     if(!existe){
         throw new Error('No existe una bodega con el ID proporcionado')
+    }
+}
+
+export const loteExistente = async (id = '') => {
+    const existe = await Lote.findById(id)
+    if(!existe){
+        throw new Error('No existe un lote con el ID proporcionado')
     }
 }

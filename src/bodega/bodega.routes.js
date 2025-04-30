@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { agregarBodega, obtenerBodegas, buscarBodega, actualizarBodega, obtenerBodegasPdf, obtenerBodegaPdf } from "./bodega.controller.js"; 
-import { agregarBodegaValidator, buscarBodegaValidator } from "../middlewares/bodega-validators.js"; 
+import { agregarBodega, obtenerBodegas, buscarBodega, actualizarBodega, 
+    obtenerBodegasPdf, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida } from "./bodega.controller.js"; 
+import { agregarBodegaValidator, buscarBodegaValidator, eliminarBodegaValidador } from "../middlewares/bodega-validators.js"; 
 
 const router = Router();
 
@@ -10,10 +11,16 @@ router.get("/", obtenerBodegas)
 
 router.get("/buscarBodega/:idBodega", buscarBodegaValidator, buscarBodega)
 
-router.put("/actualizarBodega/:idBodega", buscarBodegaValidator, actualizarBodega)
+router.get("/bodegaPorFechaIngreso", obtenerBodegasPorFechaIngreso)
+
+router.get("/bodegaPorFechaSalida", obtenerBodegasPorFechaSalida)
 
 router.get("/pdf", obtenerBodegasPdf)
 
 router.get("/buscarBodegaPdf/:idBodega", buscarBodegaValidator, obtenerBodegaPdf)
+
+router.put("/actualizarBodega/:idBodega", buscarBodegaValidator, actualizarBodega)
+
+router.delete("/eliminarBodega/:idBodega", eliminarBodegaValidador, eliminarBodega)
 
 export default router;
