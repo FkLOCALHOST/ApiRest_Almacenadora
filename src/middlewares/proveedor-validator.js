@@ -1,4 +1,3 @@
-
 import { handleErrors } from "./handle-errors.js";
 import { validarCampos } from "./validate-fields.js";
 import {
@@ -12,8 +11,8 @@ import { validateJWT } from "./validate-jwt.js";
 import { hasRoles } from "./validate-roles.js";
 
 export const agregarProveedorValidator = [
-  //validateJWT,
-  //hasRoles("ADMIN_ROLE"),
+  validateJWT,
+  hasRoles("ADMIN_ROLE"),
   body("nombre")
     .notEmpty()
     .withMessage("El nombre es obligatorio")
