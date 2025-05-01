@@ -1,5 +1,6 @@
 import Lote from './lote.model.js'
 import Products from '../productos/productos.model.js'
+import PDFDocument from 'pdfkit'
 
 export const crearLote = async (req, res) => {
     try {
@@ -128,3 +129,89 @@ export const actualizarLote = async (req, res) => {
         })
     }
 }
+
+export const generarPDFLotes = async (req, res) => {
+    try {
+      const { filtro } = req.query;
+  
+      const query = { estado: true };
+      let sortOptions = {};
+  
+      switch (filtro) {
+        case 'A-Z':
+          sortOptions = { numeroLote: 1 };
+          break;
+        case 'Z-A':
+          sortOptions = { numeroLote: -1 };
+          break;
+        case 'reciente':
+          sortOptions = { createdAt: -1 };
+          break;
+        case 'antiguo':
+          sortOptions = { createdAt: 1 };
+          break;
+        default:
+          sortOptions = {};
+      }
+  
+      const lotes = await Lote.find(query)
+        .populate('productos.productoId', 'nombreProducto')
+        .sort(sortOptions);
+  
+      if (lotes.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'No hay lotes activos para mostrar en el PDF.'
+        });
+      }
+  
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=lotes.pdf');
+  
+      const doc = new PDFDocument({ margin: 30 });
+      doc.pipe(res);
+  
+      doc.fontSize(18).text('Listado de Lotes Activos', { align: 'center' });
+      doc.moveDown(2);
+  
+      const positions = {
+        numeroLote: 50,
+        cantidad: 150,
+        fechaCaducidad: 230,
+        producto: 350,
+      };
+  
+      const startY = doc.y;
+      doc.fontSize(12)
+        .text('N° Lote', positions.numeroLote, startY)
+        .text('Cantidad', positions.cantidad, startY)
+        .text('F. Caducidad', positions.fechaCaducidad, startY)
+        .text('Producto(s)', positions.producto, startY);
+  
+      doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
+  
+      let currentY = startY + 25;
+  
+      lotes.forEach(lote => {
+        const nombresProductos = lote.productos.map(p => p.productoId?.nombreProducto || 'Sin nombre').join(', ');
+  
+        doc.fontSize(10)
+          .text(lote.numeroLote, positions.numeroLote, currentY)
+          .text(lote.cantidad, positions.cantidad, currentY)
+          .text(lote.fechaCaducidad, positions.fechaCaducidad, currentY)
+          .text(nombresProductos, positions.producto, currentY, { width: 180 });
+  
+        doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
+  
+        currentY += 25;
+      });
+  
+      doc.end();
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al generar el PDF de lotes',
+        error: err.message
+      });
+    }
+  };

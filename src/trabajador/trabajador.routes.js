@@ -4,6 +4,8 @@ import {
   obtenerTrabajadores,
   actualizarEmpleado,
   eliminarEmpleado,
+  generarPDFTrabajadores
+
 } from "./trabajador.controller.js";
 
 import {
@@ -33,5 +35,8 @@ router.delete(
   eliminarEmpleadoValidator,
   eliminarEmpleado
 );
+
+router.get("/generarPDFTrabajadores", generarPDFTrabajadores);
+
 
 export default router;
