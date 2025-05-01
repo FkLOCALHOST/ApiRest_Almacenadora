@@ -8,7 +8,7 @@ export const obtenerTrabajadores = [
   async (req, res) => {
     try {
       const { limit = 10, from = 0 } = req.query;
-      const query = { status: true };
+      const query = { estadoT: true };
       const [total, trabajadores] = await Promise.all([
         Trabajador.countDocuments(query),
         Trabajador.find(query).skip(Number(from)).limit(Number(limit)),

@@ -154,6 +154,6 @@ router.delete(
  *       500:
  *         description: Error interno del servidor.
  */
-router.get("/generarPDFTrabajadores", generarPDFTrabajadores);
+router.get("/generarPDFTrabajadores", obtenerTrabajadoresValidator, generarPDFTrabajadores);
 
 export default router;
