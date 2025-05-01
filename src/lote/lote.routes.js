@@ -184,6 +184,6 @@ router.put("/actualizarLote/:id", actualizarLotesValidador, actualizarLote);
  *       500:
  *         description: Error interno del servidor.
  */
-router.get("/generarPDFLotes", generarPDFLotes);
+router.get("/generarPDFLotes", listarLotesValidador, generarPDFLotes);
 
 export default router;

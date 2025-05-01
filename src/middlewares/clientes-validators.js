@@ -6,6 +6,8 @@ import { validateJWT } from "./validate-jwt.js";
 import { hasRoles } from "./validate-roles.js";
 
 export const agregarClienteValidador = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
     body('nombre').notEmpty().withMessage('El nombre es requerido'),
     body('apellido').notEmpty().withMessage('El apellido es requerido'),
     body("correo").notEmpty().withMessage("El correo es requerido"),
@@ -18,6 +20,7 @@ export const agregarClienteValidador = [
 ];
 
 export const obtenerClientePorIdValidador = [
+    validateJWT,
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(clienteExistente),
     validarCampos,
