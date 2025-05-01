@@ -23,7 +23,10 @@ const options ={
         "./src/clientes/clientes.routes.js",
         "./src/proveedor/proveedor.routes.js",
         "./src/trabajador/trabajador.routes.js",
-        "./src/productos/productos.routes.js"
+        "./src/productos/productos.routes.js",
+        "./src/lote/lote.routes.js",
+        "./src/bodega/bodega.routes.js",
+        "./src/auth/auth.routes.js"
     ]
 }
 
