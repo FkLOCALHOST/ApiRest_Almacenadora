@@ -87,6 +87,11 @@ export const buscarProveedorValidator = [
   handleErrors,
 ]
 
+export const listarProveedoresValidator = [
+  validateJWT,
+  validarCampos,
+  handleErrors,
+]
 
 
 

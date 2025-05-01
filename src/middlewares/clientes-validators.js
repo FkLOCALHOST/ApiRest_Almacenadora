@@ -25,6 +25,7 @@ export const obtenerClientePorIdValidador = [
 ];
 
 export const listarClientesValidador = [
+    validateJWT,
     validarCampos,
     handleErrors
 ];
