@@ -75,6 +75,14 @@ export const direccionExists = async (direccion = "") => {
     }
 }
 
+export const bodegaExists = async (idBodega = '') => {
+    const existe = await Bodega.findById(idBodega)
+    if(!existe){
+        throw new Error('No existe una bodega con el ID proporcionado')
+    }
+}
+
+
 
 export const loteExistente = async (id = '') => {
     const existe = await Lote.findById(id)
