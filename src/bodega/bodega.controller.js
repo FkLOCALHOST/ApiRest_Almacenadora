@@ -86,11 +86,11 @@ export const buscarBodega = async (req, res) => {
             bodega
         });
 
-    }catch(error){
-        res.status(500).json({
+    }catch(err){
+        return res.status(500).json({
             success: false,
-            message: 'Error al buscar el producto',
-            error
+            message: "Error al buscar el producto",
+            error: err.message
         });
     }
 }

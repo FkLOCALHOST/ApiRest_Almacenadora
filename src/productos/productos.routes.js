@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto } from "./productos.controller.js";
 import { createProductValidator, getProductByIdValidator,
-         updateProductValidator, deleteProductValidator } from "../middlewares/productos-validators.js";
+         updateProductValidator, deleteProductValidator, getProductValidator } from "../middlewares/productos-validators.js";
 
 const router = Router();
 
 router.post("/agregarProducto", createProductValidator, agregarProducto);
 
-router.get("/listarProductos", listarProductos);
+router.get("/listarProductos", getProductValidator, listarProductos);
 
 router.get("/buscarProducto/:idProducto", getProductByIdValidator, buscarProducto);
 

@@ -28,7 +28,7 @@ export const agregarProducto = async(req, res) =>{
 
 export const listarProductos = async(req, res) =>{
     try{
-        const productos = await Productos.find();
+        const productos = await Productos.find({estado: true});
 
         if (!productos || productos.length === 0) {
             return res.status(404).json({
@@ -56,7 +56,7 @@ export const buscarProducto = async (req, res) => {
     const { idProducto } = req.params;
 
     try{
-        const producto = await Productos.findById(idProducto);
+        const producto = await Productos.findOne({ _id: idProducto, estado: true });
 
         if(!producto){
             return res.status(404).json({ 
@@ -84,7 +84,9 @@ export const actualizarProducto = async(req, res) =>{
         const { idProducto } = req.params;
         const data = req.body;
 
-        const actualizarProducto = await Productos.findByIdAndUpdate(idProducto, data, { new: true })
+        const producto = await Productos.findOne({ _id: idProducto, estado: true });
+
+        const actualizarProducto = await Productos.findByIdAndUpdate(producto._id, data, { new: true })
 
         res.status(200).json({
             success: true,
@@ -103,25 +105,34 @@ export const actualizarProducto = async(req, res) =>{
 };
 
 
-export const eliminarProducto = async(req, res) =>{
-    try{
+export const eliminarProducto = async (req, res) => {
+    try {
         const { idProducto } = req.params;
-        
-        await Productos.findByIdAndDelete(idProducto);
 
-        res.status(200).json({ 
+        const producto = await Productos.findByIdAndUpdate(idProducto, { estado: false },{ new: true });
+
+        if (!producto) {
+            return res.status(404).json({
+                success: false,
+                message: 'Producto no encontrado'
+            });
+        }
+
+        res.status(200).json({
             success: true,
-            message: 'Producto eliminado exitosamente' 
+            message: 'Producto Eliminado',
+            producto
         });
 
-    }catch(err){
+    }catch(err) {
         res.status(500).json({
             success: false,
             message: 'Error al eliminar el producto',
             error: err.message
         });
     }
-}
+};
+
 
 
 

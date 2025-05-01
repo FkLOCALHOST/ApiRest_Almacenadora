@@ -17,10 +17,15 @@ export const agregarBodegaValidator = [
     handleErrors
 ];
 
+export const listarBodegaValidator = [
+    validateJWT,
+    validarCampos,
+    handleErrors
+];
+
 
 export const buscarBodegaValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
     param("idBodega").isMongoId().withMessage("No es un ID válido de MongoDB"),
     param("idBodega").custom(bodegaExists),
     validarCampos,
