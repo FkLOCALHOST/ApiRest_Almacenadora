@@ -55,7 +55,7 @@ export const login = async (req, res) => {
 
     const trabajador = await Trabajador.findOne({
       $or: [{ correoT: correoT }, { telefonoT: telefonoT }],
-    }).select("+contrasenaT");
+    }).select("contrasenaT role");
 
     if (!trabajador) {
       return res.status(400).json({
@@ -74,12 +74,13 @@ export const login = async (req, res) => {
     }
 
     const token = await generateJWT(trabajador.id);
+    console.log(trabajador)
 
     return res.status(200).json({
       message: "Inicio de sesión exitoso",
       userDetails: {
         token: token,
-        fotoDePerfil: trabajador.fotoDePerfil,
+        role: trabajador.role
       },
     });
   } catch (err) {
