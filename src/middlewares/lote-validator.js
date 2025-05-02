@@ -20,6 +20,7 @@ export const crearLoteValidador = [
 
 export const obtenerLotePorIdValidador = [
     validateJWT,
+    hasRoles("ADMIN_ROLE"),
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(loteExistente),
     validarCampos,

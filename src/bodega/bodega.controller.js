@@ -14,6 +14,8 @@ export const agregarBodega = async(req, res) =>{
     try {
         const data = req.body;
 
+        await Lote.findByIdAndUpdate(data.lote, { estado: false}, {new: true})
+
         const bodega = new Bodega({
             ...data
         });
@@ -178,6 +180,7 @@ export const obtenerBodegasPdf = async (req, res) => {
 
             doc
                 .fontSize(12)
+                .text(`Numero de bodega: ${bodega.numeroBodega || 'N/A'}`)
                 .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
                 .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
                 .moveDown(0.3);
@@ -274,6 +277,7 @@ export const obtenerBodegaPdf = async (req, res) => {
 
         doc
             .fontSize(12)
+            .text(`Número de bodega: ${bodega.numeroBodega || 'N/A'}`)
             .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
             .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
             .moveDown(0.3);

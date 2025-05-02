@@ -222,3 +222,46 @@ export const generarPDFLotes = async (req, res) => {
       });
     }
   };
+
+
+  export const obtenerTotalProductos = async (req, res) => {
+    try {
+      const lotes = await Lote.find({ estado: true })
+        .populate('productos.productoId', 'nombreProducto estado');
+  
+      const conteoProductos = {};
+  
+        lotes.forEach(lote => {
+            const cantidad = parseInt(lote.cantidad, 10);
+    
+            if (
+            Array.isArray(lote.productos) &&
+            lote.productos.length > 0 &&
+            lote.productos[0].productoId &&
+            lote.productos[0].productoId.estado === true
+            ) {
+            const producto = lote.productos[0].productoId;
+            const nombreProducto = producto.nombreProducto;
+    
+            if (conteoProductos[nombreProducto]) {
+                conteoProductos[nombreProducto] += cantidad;
+            } else {
+                conteoProductos[nombreProducto] = cantidad;
+            }
+            }
+        });
+  
+      res.status(200).json({
+        success: true,
+        productos: conteoProductos
+      });
+  
+    }catch(error) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al obtener el conteo de productos',
+        error: error.message
+      });
+    }
+  };
+  

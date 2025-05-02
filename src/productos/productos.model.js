@@ -23,6 +23,10 @@ const productsSchema = Schema({
     urlImagen: {
         type: String
     },
+    cantidadVenta: {
+        type: Number,
+        default: 0
+    },
     estado:{
         type: Boolean,
         default: true

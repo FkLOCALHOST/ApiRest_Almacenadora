@@ -93,6 +93,11 @@ export const buscarProveedorValidator = [
   handleErrors,
 ]
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4a2182fe9b9431e9eb2445eed34d67872b777920
 
 
 
