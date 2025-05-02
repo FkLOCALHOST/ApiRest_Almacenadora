@@ -1,7 +1,10 @@
 import { Router } from "express";
+import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto, generarPDFProductos, listarPorCantidadVentas } from "./productos.controller.js";
+import { createProductValidator, getProductByIdValidator, updateProductValidator, deleteProductValidator, listarPorCantidadVentasValidator } from "../middlewares/productos-validators.js";
 import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto, generarPDFProductos } from "./productos.controller.js";
 import { createProductValidator, getProductByIdValidator,
          updateProductValidator, deleteProductValidator, getProductValidator } from "../middlewares/productos-validators.js";
+
 
 const router = Router();
 
@@ -189,5 +192,27 @@ router.delete("/eliminarProducto/:idProducto", deleteProductValidator, eliminarP
  *         description: Error interno del servidor.
  */
 router.get("/generarPDFProductos", getProductValidator, generarPDFProductos);
+
+/**
+ * @swagger
+ * /productos/top-ventas:
+ *   get:
+ *     summary: Listar productos por cantidad de ventas
+ *     tags: [Productos]
+ *     parameters:
+ *       - in: query
+ *         name: limite
+ *         schema:
+ *           type: number
+ *         description: Número máximo de productos a listar.
+ *     responses:
+ *       200:
+ *         description: Lista de productos obtenida exitosamente.
+ *       404:
+ *         description: No se encontraron productos.
+ *       500:
+ *         description: Error interno del servidor.
+ */
+router.get('/top-ventas', listarPorCantidadVentasValidator, listarPorCantidadVentas);
 
 export default router;

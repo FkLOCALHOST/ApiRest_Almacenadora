@@ -135,6 +135,31 @@ export const eliminarProducto = async (req, res) => {
 };
 
 
+export const listarPorCantidadVentas = async(req, res) => {
+  try {
+    const productos = await Productos.find({ estado: true })
+      .sort({ cantidadVenta: -1 });
+    
+    if (!productos || productos.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No se encontraron productos"
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      total: productos.length,
+      productos
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error al listar productos por cantidad de ventas",
+      error: error.message
+    });
+  }
+}
 
 export const generarPDFProductos = async (req, res) => {
     try {
