@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { crearLote, obtenerLotePorId, listarLotes, eliminarLote, actualizarLote, generarPDFLotes , obtenerTotalProductos} from "./lote.controller.js";
-import { crearLoteValidador, obtenerLotePorIdValidador, listarLotesValidador, eliminarLoteValidador, actualizarLotesValidador } from "../middlewares/lote-validator.js";
+import { crearLote, obtenerLotePorId, listarLotes, eliminarLote, actualizarLote, generarPDFLotes , obtenerTotalProductos, listarTotalProductos } from "./lote.controller.js";
+import { crearLoteValidador, obtenerLotePorIdValidador, listarLotesValidador, eliminarLoteValidador, actualizarLotesValidador, listarTotalProductosValidador } from "../middlewares/lote-validator.js";
 
 const router = Router();
 
@@ -119,6 +119,7 @@ router.get("/", listarLotesValidador, listarLotes);
  */
 router.delete("/eliminarLote/:id", eliminarLoteValidador, eliminarLote);
 
+
 /**
  * @swagger
  * /lote/actualizarLote/{id}:
@@ -187,5 +188,7 @@ router.put("/actualizarLote/:id", actualizarLotesValidador, actualizarLote);
 router.get("/generarPDFLotes", listarLotesValidador, generarPDFLotes);
 
 router.get("/totalProductos", listarLotesValidador, obtenerTotalProductos);
+
+router.get("/CantidadTotalProductos", listarTotalProductosValidador ,listarTotalProductos);
 
 export default router;

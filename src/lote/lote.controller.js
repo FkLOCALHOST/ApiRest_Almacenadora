@@ -1,6 +1,12 @@
 import Lote from './lote.model.js'
 import Products from '../productos/productos.model.js'
 import PDFDocument from 'pdfkit'
+import fs from 'fs'
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const crearLote = async (req, res) => {
     try {
@@ -126,6 +132,69 @@ export const actualizarLote = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Error al actualizar el Lote',
+            error: err.message
+        })
+    }
+}
+
+export const listarTotalProductos = async (req, res) => {
+    try{
+        const { nombreProducto } = req.body;
+        
+        const producto = await Products.findOne({ nombreProducto });
+        if(!producto) {
+            return res.status(404).json({
+                success: false,
+                message: 'No se encontro el producto'
+            })
+        }
+
+        const lotes = await Lote.find({ 'productos.productoId': producto._id, estado: true });
+
+        const totalProducto = lotes.reduce((total, lote) => total + Number(lote.cantidad), 0);
+
+        const uploadsDir = path.join(__dirname, '../../public/uploads/totalProductos');
+        if (!fs.existsSync(uploadsDir)) {
+            fs.mkdirSync(uploadsDir, { recursive: true });
+        }
+
+        const filePath = path.join(uploadsDir, `${producto.nombreProducto}_reporte.pdf`);
+
+        const doc = new PDFDocument();
+
+        doc.fontSize(18).text('Reporte de Producto', { align: 'center' });
+        doc.moveDown();
+        doc.fontSize(14).text(`Producto: ${producto.nombreProducto}`);
+        doc.text(`ID del Producto: ${producto._id}`);
+        doc.text(`Cantidad Total en Lotes Activos: ${totalProducto}`);
+        doc.moveDown();
+
+        doc.fontSize(12).text('Detalles de los Lotes:', { underline: true });
+        lotes.forEach((lote, index) => {
+            doc.text(`Lote ${index + 1}:`);
+            doc.text(`  Número de Lote: ${lote.numeroLote}`);
+            doc.text(`  Cantidad: ${lote.cantidad}`);
+            doc.text(`  Fecha de Caducidad: ${lote.fechaCaducidad}`);
+            doc.moveDown();
+        });
+
+        doc.pipe(fs.createWriteStream(filePath));
+        doc.end();
+        
+        return res.status(200).json({
+            success: true,
+            message: 'Reporte generado y guardado exitosamente',
+            filePath: `/uploads/totalProductos/${producto.nombreProducto}_reporte.pdf`,
+            producto: {
+                id: producto._id,
+                nombre: producto.nombreProducto
+            },
+            totalProducto
+        })
+    }catch(err){
+        return res.status(500).json({
+            success: false,
+            message: 'Error al listar los productos con la cantidad total',
             error: err.message
         })
     }

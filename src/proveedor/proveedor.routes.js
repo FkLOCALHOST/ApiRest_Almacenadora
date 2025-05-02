@@ -4,6 +4,7 @@ import { agregarProveedorValidator, actualizarProveedorValidator, cambiarEstadoV
      buscarProveedorValidator, eliminarProveedorValidator, listarProveedoresValidator  } from "../middlewares/proveedor-validator.js"
 
 
+
 const router = Router()
 
 

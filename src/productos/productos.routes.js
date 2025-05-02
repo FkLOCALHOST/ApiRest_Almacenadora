@@ -3,8 +3,6 @@ import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, e
 import { createProductValidator, getProductByIdValidator, updateProductValidator,
      deleteProductValidator, listarPorCantidadVentasValidator, getProductValidator } from "../middlewares/productos-validators.js";
 
-
-
 const router = Router();
 
 /**
@@ -213,5 +211,6 @@ router.get("/generarPDFProductos", getProductValidator, generarPDFProductos);
  *         description: Error interno del servidor.
  */
 router.get('/top-ventas', listarPorCantidadVentasValidator, listarPorCantidadVentas);
+
 
 export default router;

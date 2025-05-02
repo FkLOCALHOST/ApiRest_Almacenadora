@@ -48,7 +48,6 @@ export const deleteProductValidator = [
     param("idProducto").custom(productExists),
     validarCampos,
     handleErrors
-];
 
 export const listarPorCantidadVentasValidator = [
     validateJWT,
