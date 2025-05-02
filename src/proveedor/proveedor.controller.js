@@ -131,29 +131,35 @@ export const eliminarProveedor = async (req, res) => {
 
 export const listarProveedores = async (req, res) => {
     try {
-        const { limite = 10, desde = 0 } = req.query
-        const query = { estado: 'ACTIVO' }
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: 'ACTIVO' };
 
         const [total, proveedores] = await Promise.all([
             Proveedor.countDocuments(query),
             Proveedor.find(query)
                 .skip(Number(desde))
                 .limit(Number(limite))
-        ])
+        ]);
+
+        if (proveedores.length === 0) {
+            return res.status(204).json({
+                success: true,
+                message: 'No se encontraron proveedores activos'
+            });
+        }
 
         res.status(200).json({
             success: true,
             total,
             proveedores
-        })
+        });
 
     } catch (err) {
-
         res.status(500).json({
             success: false,
             message: 'Error al listar los proveedores',
             error: err.message
-        })
+        });
     }
 }
 
@@ -267,5 +273,5 @@ export const generarPDFProveedores = async (req, res) => {
   }
 };
 
-  
+
 

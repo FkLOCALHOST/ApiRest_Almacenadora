@@ -1,10 +1,8 @@
 import {Router} from "express"
 import { generarPDFProveedores, agregarProveedor, eliminarProveedor, listarProveedores, actualizarProveedor, cambiarEstado, buscarProveedor } from "./proveedor.controller.js"
-<<<<<<< HEAD
-import { agregarProveedorValidator, listarProveedoresValidator ,actualizarProveedorValidator, cambiarEstadoValidator, buscarProveedorValidator, eliminarProveedorValidator  } from "../middlewares/proveedor-validator.js"
-=======
-import { agregarProveedorValidator, actualizarProveedorValidator, cambiarEstadoValidator, buscarProveedorValidator, eliminarProveedorValidator, listarProveedoresValidator  } from "../middlewares/proveedor-validator.js"
->>>>>>> 32c03bb556561ae956b39df1eb7d8a5121edd498
+
+import { agregarProveedorValidator, actualizarProveedorValidator, cambiarEstadoValidator,
+     buscarProveedorValidator, eliminarProveedorValidator, listarProveedoresValidator  } from "../middlewares/proveedor-validator.js"
 
 const router = Router()
 
@@ -14,11 +12,7 @@ router.put('/actualizar/:proveedorId', actualizarProveedorValidator, actualizarP
 
 router.patch('/cambiar-estado/:proveedorId', cambiarEstadoValidator, cambiarEstado)
 router.delete('/eliminar/:proveedorId', eliminarProveedorValidator, eliminarProveedor)
-<<<<<<< HEAD
-router.get('/listar',listarProveedoresValidator ,listarProveedores)
-=======
 router.get('/listar', listarProveedoresValidator, listarProveedores)
->>>>>>> 32c03bb556561ae956b39df1eb7d8a5121edd498
 router.get('/buscar/:nombre', buscarProveedorValidator, buscarProveedor)
 
 router.get('/generarReporte', listarProveedoresValidator, generarPDFProveedores)

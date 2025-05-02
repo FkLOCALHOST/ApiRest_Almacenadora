@@ -64,30 +64,37 @@ export const obtenerLotePorId = async (req, res) => {
 }
 
 export const listarLotes = async (req, res) => {
-    try{
-        const { limite = 10, desde = 0 } = req.query
-        const query = { estado: true }
-        
+    try {
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: true };
+
         const [total, lotes] = await Promise.all([
             Lote.countDocuments(query),
             Lote.find(query)
-                    .skip(Number(desde))
-                    .limit(Number(limite))
-        ])
+                .skip(Number(desde))
+                .limit(Number(limite))
+        ]);
+
+        if (lotes.length === 0) {
+            return res.status(204).json({
+                success: true,
+                message: 'No se encontraron lotes activos'
+            });
+        }
 
         return res.status(200).json({
             success: true,
             total,
             lotes
-        })
-    }catch(err){
+        });
+    } catch (err) {
         return res.status(500).json({
             success: false,
-            message: 'Error al obtener los Lotes',
+            message: 'Error al obtener los lotes',
             error: err.message
-        })
+        });
     }
-}
+};
 
 export const eliminarLote = async (req, res) => {
     try{

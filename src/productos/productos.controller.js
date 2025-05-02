@@ -27,14 +27,14 @@ export const agregarProducto = async(req, res) =>{
     }
 }
 
-export const listarProductos = async(req, res) =>{
-    try{
-        const productos = await Productos.find({estado: true});
+export const listarProductos = async (req, res) => {
+    try {
+        const productos = await Productos.find({ estado: true });
 
         if (!productos || productos.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "No se encontraron productos"
+            return res.status(204).json({
+                success: true,
+                message: "No se encontraron productos activos"
             });
         }
 
@@ -44,7 +44,7 @@ export const listarProductos = async(req, res) =>{
             productos
         });
 
-    }catch(err){
+    } catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error al obtener los productos",

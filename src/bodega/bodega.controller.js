@@ -36,7 +36,6 @@ export const agregarBodega = async(req, res) =>{
 
 export const obtenerBodegas = async (req, res) => {
     try {
-
         const query = { estado: true };
 
         const [total, bodegas] = await Promise.all([
@@ -47,8 +46,8 @@ export const obtenerBodegas = async (req, res) => {
         ]);
 
         if (bodegas.length === 0) {
-            return res.status(404).json({
-                success: false,
+            return res.status(204).json({
+                success: true,
                 message: "No se encontraron registros de la bodega"
             });
         }
@@ -59,7 +58,7 @@ export const obtenerBodegas = async (req, res) => {
             bodegas
         });
 
-    }catch(err){
+    } catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error al obtener los registros en bodega",

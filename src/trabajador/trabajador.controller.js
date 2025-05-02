@@ -53,26 +53,35 @@ export const actualizarEmpleado = [
 ];
 
 export const lsitarEmpleado = async (req, res) => {
-  try {
-    const { limite = 5, desde = 0 } = req.query;
-    const query = { status: true };
+    try {
+        const { limite = 5, desde = 0 } = req.query;
+        const query = { status: true };
 
-    const [total, trabajadores] = await Promise.all([
-      Trabajador.countDocuments(query),
-      Trabajador.find(query).skip(Number(desde)).limit(Number(limite)),
-    ]);
-    return res.status(200).json({
-      success: true,
-      total,
-      trabajadores,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: "Error al obtener los trabajadores",
-      error: err.message,
-    });
-  }
-}
+        const [total, trabajadores] = await Promise.all([
+            Trabajador.countDocuments(query),
+            Trabajador.find(query).skip(Number(desde)).limit(Number(limite)),
+        ]);
+
+        if (trabajadores.length === 0) {
+            return res.status(204).json({
+                success: true,
+                message: 'No se encontraron trabajadores activos'
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            total,
+            trabajadores,
+        });
+    } catch (err) {
+        return res.status(500).json({
+            message: "Error al obtener los trabajadores",
+            error: err.message,
+        });
+    }
+};
+
 export const eliminarEmpleado = [
   validateJWT,
 
