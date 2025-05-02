@@ -153,7 +153,6 @@ export const listarPorCantidadVentas = async(req, res) => {
   }
 }
 
-
 export const generarPDFProductos = async (req, res) => {
     try {
       const { filtro } = req.query;
