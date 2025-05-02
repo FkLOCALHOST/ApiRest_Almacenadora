@@ -182,32 +182,6 @@ export const buscarProveedor = async (req, res) => {
     }
 }
 
-export const buscarProveedor = async (req, res) => {
-    try {
-      const { nombre } = req.params; 
-      const proveedorA = await Proveedor.findOne({ nombre });
-  
-      if (!proveedorA) {
-        return res.status(404).json({
-          success: false,
-          message: 'Proveedor no encontrado'
-        })
-      }
-
-      res.status(200).json({
-        success: true,
-        proveedor: proveedorA
-      })
-  
-    } catch (err) {
-      res.status(500).json({
-        success: false,
-        message: 'Error al buscar el proveedor',
-        error: err.message
-      })
-    }
-}
-
 export const generarPDFProveedores = async (req, res) => {
   try {
     const { filtro } = req.query;
