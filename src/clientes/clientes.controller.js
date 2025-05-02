@@ -64,17 +64,11 @@ export const listarCientes = async (req, res) => {
                 .limit(Number(limite))
         ]);
 
-        if (clientes.length === 0) {
-            return res.status(204).json({
-                success: true,
-                message: 'No se encontraron clientes activos'
-            });
-        }
-
         return res.status(200).json({
             success: true,
             total,
-            clientes
+            clientes,
+            message: clientes.length === 0 ? 'No se encontraron clientes activos' : undefined
         });
     } catch (err) {
         return res.status(500).json({

@@ -47,19 +47,12 @@ export const obtenerBodegas = async (req, res) => {
                 .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT')
         ]);
 
-        if (bodegas.length === 0) {
-            return res.status(204).json({
-                success: true,
-                message: "No se encontraron registros de la bodega"
-            });
-        }
-
         return res.status(200).json({
             success: true,
             total,
-            bodegas
+            bodegas,
+            message: bodegas.length === 0 ? 'No se encontraron registros de la bodega' : undefined
         });
-
     } catch (err) {
         return res.status(500).json({
             success: false,

@@ -31,19 +31,12 @@ export const listarProductos = async (req, res) => {
     try {
         const productos = await Productos.find({ estado: true });
 
-        if (!productos || productos.length === 0) {
-            return res.status(204).json({
-                success: true,
-                message: "No se encontraron productos activos"
-            });
-        }
-
         return res.status(200).json({
             success: true,
             total: productos.length,
-            productos
+            productos,
+            message: productos.length === 0 ? 'No se encontraron productos activos' : undefined
         });
-
     } catch (err) {
         return res.status(500).json({
             success: false,
