@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { crearLote, obtenerLotePorId, listarLotes, eliminarLote, actualizarLote, generarPDFLotes } from "./lote.controller.js";
+import { crearLote, obtenerLotePorId, listarLotes, eliminarLote, actualizarLote, generarPDFLotes , obtenerTotalProductos} from "./lote.controller.js";
 import { crearLoteValidador, obtenerLotePorIdValidador, listarLotesValidador, eliminarLoteValidador, actualizarLotesValidador } from "../middlewares/lote-validator.js";
 
 const router = Router();
@@ -185,5 +185,7 @@ router.put("/actualizarLote/:id", actualizarLotesValidador, actualizarLote);
  *         description: Error interno del servidor.
  */
 router.get("/generarPDFLotes", listarLotesValidador, generarPDFLotes);
+
+router.get("/totalProductos", listarLotesValidador, obtenerTotalProductos);
 
 export default router;

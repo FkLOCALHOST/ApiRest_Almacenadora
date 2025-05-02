@@ -14,6 +14,8 @@ export const agregarBodega = async(req, res) =>{
     try {
         const data = req.body;
 
+        await Lote.findByIdAndUpdate(data.lote, { estado: false}, {new: true})
+
         const bodega = new Bodega({
             ...data
         });
