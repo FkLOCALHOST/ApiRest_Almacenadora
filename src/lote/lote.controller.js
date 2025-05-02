@@ -75,17 +75,11 @@ export const listarLotes = async (req, res) => {
                 .limit(Number(limite))
         ]);
 
-        if (lotes.length === 0) {
-            return res.status(204).json({
-                success: true,
-                message: 'No se encontraron lotes activos'
-            });
-        }
-
         return res.status(200).json({
             success: true,
             total,
-            lotes
+            lotes,
+            message: lotes.length === 0 ? 'No se encontraron lotes activos' : undefined
         });
     } catch (err) {
         return res.status(500).json({
@@ -264,4 +258,3 @@ export const generarPDFLotes = async (req, res) => {
       });
     }
   };
-  

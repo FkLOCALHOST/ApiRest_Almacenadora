@@ -141,19 +141,12 @@ export const listarProveedores = async (req, res) => {
                 .limit(Number(limite))
         ]);
 
-        if (proveedores.length === 0) {
-            return res.status(204).json({
-                success: true,
-                message: 'No se encontraron proveedores activos'
-            });
-        }
-
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             total,
-            proveedores
+            proveedores,
+            message: proveedores.length === 0 ? 'No se encontraron proveedores activos' : undefined
         });
-
     } catch (err) {
         res.status(500).json({
             success: false,

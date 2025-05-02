@@ -62,17 +62,11 @@ export const lsitarEmpleado = async (req, res) => {
             Trabajador.find(query).skip(Number(desde)).limit(Number(limite)),
         ]);
 
-        if (trabajadores.length === 0) {
-            return res.status(204).json({
-                success: true,
-                message: 'No se encontraron trabajadores activos'
-            });
-        }
-
         return res.status(200).json({
             success: true,
             total,
             trabajadores,
+            message: trabajadores.length === 0 ? 'No se encontraron trabajadores activos' : undefined
         });
     } catch (err) {
         return res.status(500).json({
