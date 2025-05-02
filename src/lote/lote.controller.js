@@ -70,30 +70,37 @@ export const obtenerLotePorId = async (req, res) => {
 }
 
 export const listarLotes = async (req, res) => {
-    try{
-        const { limite = 10, desde = 0 } = req.query
-        const query = { estado: true }
-        
+    try {
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: true };
+
         const [total, lotes] = await Promise.all([
             Lote.countDocuments(query),
             Lote.find(query)
-                    .skip(Number(desde))
-                    .limit(Number(limite))
-        ])
+                .skip(Number(desde))
+                .limit(Number(limite))
+        ]);
+
+        if (lotes.length === 0) {
+            return res.status(204).json({
+                success: true,
+                message: 'No se encontraron lotes activos'
+            });
+        }
 
         return res.status(200).json({
             success: true,
             total,
             lotes
-        })
-    }catch(err){
+        });
+    } catch (err) {
         return res.status(500).json({
             success: false,
-            message: 'Error al obtener los Lotes',
+            message: 'Error al obtener los lotes',
             error: err.message
-        })
+        });
     }
-}
+};
 
 export const eliminarLote = async (req, res) => {
     try{
@@ -198,3 +205,132 @@ export const listarTotalProductos = async (req, res) => {
         })
     }
 }
+
+export const generarPDFLotes = async (req, res) => {
+    try {
+      const { filtro } = req.query;
+  
+      const query = { estado: true };
+      let sortOptions = {};
+  
+      switch (filtro) {
+        case 'A-Z':
+          sortOptions = { numeroLote: 1 };
+          break;
+        case 'Z-A':
+          sortOptions = { numeroLote: -1 };
+          break;
+        case 'reciente':
+          sortOptions = { createdAt: -1 };
+          break;
+        case 'antiguo':
+          sortOptions = { createdAt: 1 };
+          break;
+        default:
+          sortOptions = {};
+      }
+  
+      const lotes = await Lote.find(query)
+        .populate('productos.productoId', 'nombreProducto')
+        .sort(sortOptions);
+  
+      if (lotes.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'No hay lotes activos para mostrar en el PDF.'
+        });
+      }
+  
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=lotes.pdf');
+  
+      const doc = new PDFDocument({ margin: 30 });
+      doc.pipe(res);
+  
+      doc.fontSize(18).text('Listado de Lotes Activos', { align: 'center' });
+      doc.moveDown(2);
+  
+      const positions = {
+        numeroLote: 50,
+        cantidad: 150,
+        fechaCaducidad: 230,
+        producto: 350,
+      };
+  
+      const startY = doc.y;
+      doc.fontSize(12)
+        .text('N° Lote', positions.numeroLote, startY)
+        .text('Cantidad', positions.cantidad, startY)
+        .text('F. Caducidad', positions.fechaCaducidad, startY)
+        .text('Producto(s)', positions.producto, startY);
+  
+      doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
+  
+      let currentY = startY + 25;
+  
+      lotes.forEach(lote => {
+        const nombresProductos = lote.productos.map(p => p.productoId?.nombreProducto || 'Sin nombre').join(', ');
+  
+        doc.fontSize(10)
+          .text(lote.numeroLote, positions.numeroLote, currentY)
+          .text(lote.cantidad, positions.cantidad, currentY)
+          .text(lote.fechaCaducidad, positions.fechaCaducidad, currentY)
+          .text(nombresProductos, positions.producto, currentY, { width: 180 });
+  
+        doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
+  
+        currentY += 25;
+      });
+  
+      doc.end();
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al generar el PDF de lotes',
+        error: err.message
+      });
+    }
+  };
+
+
+  export const obtenerTotalProductos = async (req, res) => {
+    try {
+      const lotes = await Lote.find({ estado: true })
+        .populate('productos.productoId', 'nombreProducto estado');
+  
+      const conteoProductos = {};
+  
+        lotes.forEach(lote => {
+            const cantidad = parseInt(lote.cantidad, 10);
+    
+            if (
+            Array.isArray(lote.productos) &&
+            lote.productos.length > 0 &&
+            lote.productos[0].productoId &&
+            lote.productos[0].productoId.estado === true
+            ) {
+            const producto = lote.productos[0].productoId;
+            const nombreProducto = producto.nombreProducto;
+    
+            if (conteoProductos[nombreProducto]) {
+                conteoProductos[nombreProducto] += cantidad;
+            } else {
+                conteoProductos[nombreProducto] = cantidad;
+            }
+            }
+        });
+  
+      res.status(200).json({
+        success: true,
+        productos: conteoProductos
+      });
+  
+    }catch(error) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al obtener el conteo de productos',
+        error: error.message
+      });
+    }
+  };
+  

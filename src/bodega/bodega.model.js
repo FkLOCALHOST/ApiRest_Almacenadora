@@ -1,6 +1,13 @@
 import { Schema, model} from "mongoose"
 
 const bodegaSchema = Schema({
+    numeroBodega: {
+        type: String,
+        required: [true, "El número de bodega es requerido"],
+        minLength: 4,
+        maxLength: 6,
+        unique: true
+    },
     fechaIngreso: {
         type: Date,
         required: [true, "La fecha de ingreso es requerida"]

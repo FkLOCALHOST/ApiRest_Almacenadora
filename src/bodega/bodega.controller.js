@@ -14,6 +14,8 @@ export const agregarBodega = async(req, res) =>{
     try {
         const data = req.body;
 
+        await Lote.findByIdAndUpdate(data.lote, { estado: false}, {new: true})
+
         const bodega = new Bodega({
             ...data
         });
@@ -36,7 +38,6 @@ export const agregarBodega = async(req, res) =>{
 
 export const obtenerBodegas = async (req, res) => {
     try {
-
         const query = { estado: true };
 
         const [total, bodegas] = await Promise.all([
@@ -47,8 +48,8 @@ export const obtenerBodegas = async (req, res) => {
         ]);
 
         if (bodegas.length === 0) {
-            return res.status(404).json({
-                success: false,
+            return res.status(204).json({
+                success: true,
                 message: "No se encontraron registros de la bodega"
             });
         }
@@ -59,7 +60,7 @@ export const obtenerBodegas = async (req, res) => {
             bodegas
         });
 
-    }catch(err){
+    } catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error al obtener los registros en bodega",
@@ -179,6 +180,7 @@ export const obtenerBodegasPdf = async (req, res) => {
 
             doc
                 .fontSize(12)
+                .text(`Numero de bodega: ${bodega.numeroBodega || 'N/A'}`)
                 .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
                 .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
                 .moveDown(0.3);
@@ -275,6 +277,7 @@ export const obtenerBodegaPdf = async (req, res) => {
 
         doc
             .fontSize(12)
+            .text(`Número de bodega: ${bodega.numeroBodega || 'N/A'}`)
             .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
             .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
             .moveDown(0.3);

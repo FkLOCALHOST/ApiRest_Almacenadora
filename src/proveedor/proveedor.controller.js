@@ -131,29 +131,28 @@ export const eliminarProveedor = async (req, res) => {
 
 export const listarProveedores = async (req, res) => {
     try {
-        const { limite = 10, desde = 0 } = req.query
-        const query = { estado: 'ACTIVO' }
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: 'ACTIVO' };
+
 
         const [total, proveedores] = await Promise.all([
             Proveedor.countDocuments(query),
             Proveedor.find(query)
                 .skip(Number(desde))
                 .limit(Number(limite))
-        ])
-
-        res.status(200).json({
+        ]);
+        return res.status(200).json({
             success: true,
             total,
-            proveedores
-        })
-
+            proveedores,
+            message: proveedores.length === 0 ? 'No se encontraron proveedores activos' : undefined
+        });
     } catch (err) {
-
         res.status(500).json({
             success: false,
             message: 'Error al listar los proveedores',
             error: err.message
-        })
+        });
     }
 }
 
@@ -183,6 +182,31 @@ export const buscarProveedor = async (req, res) => {
     }
 }
 
+export const buscarProveedor = async (req, res) => {
+    try {
+      const { nombre } = req.params; 
+      const proveedorA = await Proveedor.findOne({ nombre });
+  
+      if (!proveedorA) {
+        return res.status(404).json({
+          success: false,
+          message: 'Proveedor no encontrado'
+        })
+      }
+
+      res.status(200).json({
+        success: true,
+        proveedor: proveedorA
+      })
+  
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al buscar el proveedor',
+        error: err.message
+      })
+    }
+}
 
 export const generarPDFProveedores = async (req, res) => {
   try {
@@ -216,7 +240,7 @@ export const generarPDFProveedores = async (req, res) => {
         message: 'No hay proveedores activos para mostrar en el PDF.'
       });
     }
-
+    
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=proveedores.pdf');
 
@@ -266,6 +290,3 @@ export const generarPDFProveedores = async (req, res) => {
     });
   }
 };
-
-  
-

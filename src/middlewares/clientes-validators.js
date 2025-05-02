@@ -55,4 +55,3 @@ export const actualizarClientesValidador = [
     validarCampos,
     handleErrors
 ];
-
