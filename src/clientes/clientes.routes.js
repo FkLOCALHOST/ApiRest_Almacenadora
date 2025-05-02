@@ -184,6 +184,6 @@ router.put('/actualizarClientes/:id', actualizarClientesValidador, actualizarCli
  *       500:
  *         description: Error interno del servidor.
  */
-router.get('/generarPDFClientes', generarPDFClientes);
+router.get('/generarPDFClientes', listarClientesValidador, generarPDFClientes);
 
 export default router;

@@ -69,6 +69,12 @@ export const actualizarProveedorValidator = [
 ]
 
 
+export const listarProveedoresValidator = [
+  validateJWT,
+  validarCampos,
+  handleErrors,
+]
+
 export const cambiarEstadoValidator = [
   validateJWT,
   hasRoles("ADMIN_ROLE"),
@@ -87,6 +93,11 @@ export const buscarProveedorValidator = [
   handleErrors,
 ]
 
+export const listarProveedoresValidator = [
+  validateJWT,
+  validarCampos,
+  handleErrors,
+]
 
 
 

@@ -101,24 +101,32 @@ export const actualizarProveedor = async (req, res) => {
 
 
 export const eliminarProveedor = async (req, res) => {
-    try{
-        const {proveedorId} = req.params
+    try {
+        const { proveedorId } = req.params;
 
-        await Proveedor.findByIdAndDelete(proveedorId)
+        const proveedor = await Proveedor.findByIdAndUpdate(proveedorId, { estado: 'INACTIVO' },{ new: true });
 
-        res.status(201).json({
+        if (!proveedor) {
+            return res.status(404).json({
+                success: false,
+                message: 'Proveedor no encontrado'
+            });
+        }
+
+        res.status(200).json({
             success: true,
-            message: 'El proveedor ha sido eliminado correctamente'
-        })
+            message: 'Proveedor Eliminado Exitosamente',
+            proveedor
+        });
 
-    }catch(err){
+    }catch(err) {
         res.status(500).json({
             success: false,
             message: 'Error al eliminar el proveedor',
             error: err.message
-        })
+        });
     }
-}
+};
 
 
 export const listarProveedores = async (req, res) => {
