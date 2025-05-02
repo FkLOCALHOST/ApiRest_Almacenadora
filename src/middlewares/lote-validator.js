@@ -28,7 +28,7 @@ export const obtenerLotePorIdValidador = [
 ];
 
 export const listarLotesValidador = [
-    
+    validateJWT,
     validarCampos,
     handleErrors
 ];

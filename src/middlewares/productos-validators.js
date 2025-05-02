@@ -18,6 +18,12 @@ export const createProductValidator = [
     handleErrors
 ];
 
+export const getProductValidator = [
+    validateJWT,
+    validarCampos,
+    handleErrors
+];
+
 export const getProductByIdValidator = [
     validateJWT,
     param("idProducto").isMongoId().withMessage("No es un ID válido de MongoDB"),
