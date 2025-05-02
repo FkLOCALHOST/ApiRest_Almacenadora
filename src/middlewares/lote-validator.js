@@ -6,6 +6,8 @@ import { validateJWT } from "./validate-jwt.js";
 import { hasRoles } from "./validate-roles.js";
 
 export const crearLoteValidador = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
     body('numeroLote').notEmpty().withMessage('El numero del lote es requerido'),
     body('numeroLote').isLength({ min: 4, max: 15}).withMessage('El numero del lote debe de tener entre 4 y 15 digitos'),
     body('cantidad').notEmpty().withMessage('La cantidad del lote es requerido'),
@@ -17,6 +19,7 @@ export const crearLoteValidador = [
 ];
 
 export const obtenerLotePorIdValidador = [
+    validateJWT,
     param('id').isMongoId().withMessage('El ID no es valido'),
     param('id').custom(loteExistente),
     validarCampos,
@@ -24,6 +27,7 @@ export const obtenerLotePorIdValidador = [
 ];
 
 export const listarLotesValidador = [
+    validateJWT,
     validarCampos,
     handleErrors
 ];

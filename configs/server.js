@@ -14,6 +14,8 @@ import Trabajador from "../src/trabajador/trabajador.model.js";
 import productosRoutes from "../src/productos/productos.routes.js";
 import authRoutes from "../src/auth/auth.routes.js";
 import loteRoutes from "../src/lote/lote.routes.js"
+import bodegaRoutes from "../src/bodega/bodega.routes.js"
+import {swaggerUi, swaggerDocs} from "./swagger.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({ extended: false }));
@@ -36,6 +38,10 @@ const routes = (app) => {
     app.use("/almacenadora/v1/auth", authRoutes);
 
     app.use("/almacenadora/v1/lote", loteRoutes)
+
+    app.use("/almacenadora/v1/bodega", bodegaRoutes)
+
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 };
 
 const conectarDB = async () => {
