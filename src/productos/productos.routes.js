@@ -1,9 +1,8 @@
 import { Router } from "express";
 import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto, generarPDFProductos, listarPorCantidadVentas } from "./productos.controller.js";
-import { createProductValidator, getProductByIdValidator, updateProductValidator, deleteProductValidator, listarPorCantidadVentasValidator } from "../middlewares/productos-validators.js";
-import { agregarProducto, listarProductos, buscarProducto, actualizarProducto, eliminarProducto, generarPDFProductos } from "./productos.controller.js";
-import { createProductValidator, getProductByIdValidator,
-         updateProductValidator, deleteProductValidator, getProductValidator } from "../middlewares/productos-validators.js";
+import { createProductValidator, getProductByIdValidator, updateProductValidator,
+     deleteProductValidator, listarPorCantidadVentasValidator, getProductValidator } from "../middlewares/productos-validators.js";
+
 
 
 const router = Router();
