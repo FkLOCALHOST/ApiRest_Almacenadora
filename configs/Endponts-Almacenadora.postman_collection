@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ead654e9-ca5d-4179-99e6-a12d2a9756b1",
-		"name": "Almacenadora",
+		"_postman_id": "67b95bb6-4f27-4129-bf37-6016def8d445",
+		"name": "Almacenadora Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "38160952"
+		"_exporter_id": "42278127"
 	},
 	"item": [
 		{
@@ -366,6 +366,38 @@
 								"productos",
 								"actualizarProducto",
 								"68115cb366db2c3fde8749a6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Top ventas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODE0MTdkN2MyM2NhMDk1ZGQ1MThjNDUiLCJpYXQiOjE3NDYxNDcyOTAsImV4cCI6MTc0NjE1MDg5MH0.lUGCU9RHiAfXySUbtB-7MgfzlLPjo81acWXTHJQXP48",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/top-ventas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"top-ventas"
 							]
 						}
 					},
