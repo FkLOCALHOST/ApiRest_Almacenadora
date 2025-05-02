@@ -49,3 +49,10 @@ export const actualizarLotesValidador = [
     validarCampos,
     handleErrors
 ];
+
+export const listarTotalProductosValidador = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    validarCampos,
+    handleErrors
+];
