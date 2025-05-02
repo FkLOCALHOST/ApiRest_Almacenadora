@@ -387,5 +387,45 @@ export const obtenerBodegasPorFechaSalida = async (req, res) => {
     }
 };
 
+export const filtrarBodegasPorFechaSalida = async (req, res) => {
+    try {
+        const { fechaIngreso, fechaSalida } = req.query;
 
+        if (!fechaIngreso || !fechaSalida) {
+            return res.status(400).json({
+                success: false,
+                message: 'Debe proporcionar fecha de ingresp y fecha de salida en la consulta.'
+            });
+        }
 
+        const bodegas = await Bodega.find({
+            estado: true,
+            fechaSalida: {
+                $gte: new Date(fechaIngreso),
+                $lte: new Date(fechaSalida)
+            }
+        })
+        .populate('lote', 'numeroLote cantidad fechaCaducidad productos estado')
+        .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT');
+
+        if (bodegas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'No se encontraron bodegas en el rango de fechas especificado.'
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            total: bodegas.length,
+            bodegas
+        });
+
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Error al filtrar bodegas por fecha de salida',
+            error: err.message
+        });
+    }
+};

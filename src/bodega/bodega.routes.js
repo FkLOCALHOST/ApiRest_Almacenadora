@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { agregarBodega, obtenerBodegas, buscarBodega, actualizarBodega, 
-    obtenerBodegasPdf, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida } from "./bodega.controller.js"; 
+    obtenerBodegasPdf, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida,filtrarBodegasPorFechaSalida } from "./bodega.controller.js"; 
 import { agregarBodegaValidator, buscarBodegaValidator, eliminarBodegaValidador, listarBodegaValidator } from "../middlewares/bodega-validators.js"; 
 
 const router = Router();
@@ -234,5 +234,7 @@ router.put("/actualizarBodega/:idBodega", buscarBodegaValidator, actualizarBodeg
  *         description: Error interno del servidor
  */
 router.delete("/eliminarBodega/:idBodega", eliminarBodegaValidador, eliminarBodega);
+
+router.get('/bodegas/filtrar-fecha-salida', filtrarBodegasPorFechaSalida);
 
 export default router;
