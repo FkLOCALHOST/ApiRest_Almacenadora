@@ -181,6 +181,7 @@ export const obtenerBodegasPdf = async (req, res) => {
 
             doc
                 .fontSize(12)
+                .text(`Numero de bodega: ${bodega.numeroBodega || 'N/A'}`)
                 .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
                 .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
                 .moveDown(0.3);
@@ -277,6 +278,7 @@ export const obtenerBodegaPdf = async (req, res) => {
 
         doc
             .fontSize(12)
+            .text(`Número de bodega: ${bodega.numeroBodega || 'N/A'}`)
             .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
             .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
             .moveDown(0.3);
