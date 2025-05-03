@@ -17,13 +17,19 @@ const loteSchema =  new Schema({
         required: true
     },
     productos: {
-        type: [{
-            productoId: {
-                type: Schema.Types.ObjectId,
-                ref: 'Products',
-                required: true
-            }
-        }]
+        type: [
+            {
+                productoId: {
+                    type: Schema.Types.ObjectId,
+                    ref: 'Products',
+                    required: true,
+                },
+                nombreProducto: {
+                    type: String,
+                    required: true,
+                },
+            },
+        ],
     },
     estado: {
         type: Boolean,
