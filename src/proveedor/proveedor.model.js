@@ -17,9 +17,8 @@ const proveedorSchema = Schema({
         unique: true
     },
     estado:{
-        type: String,
-        enum: ['ACTIVO', 'INACTIVO'],
-        default: 'ACTIVO',
+        type: Boolean,
+        default: true
     },
 },
 {

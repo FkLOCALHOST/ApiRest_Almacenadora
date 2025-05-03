@@ -69,42 +69,40 @@ export const actualizarProveedor = async (req, res) => {
 
   export const cambiarEstado = async (req, res) => {
     try {
-      const { proveedorId } = req.params
-      const proveedor = await Proveedor.findById(proveedorId)
-
+      const { proveedorId } = req.params;
+      const proveedor = await Proveedor.findById(proveedorId);
+  
       if (!proveedor) {
         return res.status(404).json({
           success: false,
           message: 'Proveedor no encontrado'
-        })
+        });
       }
   
-      const nuevoEstado = proveedor.estado === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
-  
-      proveedor.estado = nuevoEstado;
-      const proveedorActualizado = await proveedor.save()
+      proveedor.estado = !proveedor.estado; 
+      const proveedorActualizado = await proveedor.save();
   
       res.status(200).json({
         success: true,
-        message: `El estado ha sido cambiado a ${nuevoEstado}`,
+        message: `El estado ha sido cambiado a ${proveedor.estado ? 'ACTIVO' : 'INACTIVO'}`,
         proveedor: proveedorActualizado
-      })
+      });
   
     } catch (err) {
       res.status(500).json({
         success: false,
         message: 'Error al cambiar el estado del proveedor',
         error: err.message
-      })
+      });
     }
-  }
+  };
 
 
 export const eliminarProveedor = async (req, res) => {
     try {
         const { proveedorId } = req.params;
 
-        const proveedor = await Proveedor.findByIdAndUpdate(proveedorId, { estado: 'INACTIVO' },{ new: true });
+        const proveedor = await Proveedor.findByIdAndUpdate(proveedorId, { estado: false },{ new: true });
 
         if (!proveedor) {
             return res.status(404).json({
@@ -132,7 +130,7 @@ export const eliminarProveedor = async (req, res) => {
 export const listarProveedores = async (req, res) => {
     try {
         const { limite = 10, desde = 0 } = req.query;
-        const query = { estado: 'ACTIVO' };
+        const query = { estado: true };
 
 
         const [total, proveedores] = await Promise.all([
@@ -186,7 +184,7 @@ export const generarPDFProveedores = async (req, res) => {
   try {
     const { filtro } = req.query;
 
-    const query = { estado: 'ACTIVO' };
+    const query = { estado: true };
     let sortOptions = {};
 
     switch (filtro) {
