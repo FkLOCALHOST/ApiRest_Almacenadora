@@ -57,10 +57,10 @@ export const clienteExistente = async (id = '') => {
     }
 }
 
-export const nameExists = async (name = "") => {
-    const exsite = await Proveedor.findOne({name})
+export const nameExists = async (nombre = "") => {
+    const exsite = await Proveedor.findOne({nombre})
     if (exsite) {
-        throw new Error(`El nombre ${name} ya existe`)
+        throw new Error(`El nombre ${nombre} ya existe`)
     }
 }
 
