@@ -9,12 +9,10 @@ const proveedorSchema = Schema({
     telefono:{
         type: Number,
         required: [true, 'El telefono es obligatorio'],
-        unique: true
     },
     direccion:{
         type: String,
         required: [true, 'La direccion es obligatoria'],
-        unique: true
     },
     estado:{
         type: Boolean,
