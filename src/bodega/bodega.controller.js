@@ -6,35 +6,45 @@ import fs from 'fs';
 import { dirname } from "path";
 import { fileURLToPath } from 'url'
 import path from 'path';
+import Products from "../productos/productos.model.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export const agregarBodega = async(req, res) =>{
 
+export const agregarBodega = async (req, res) => {
     try {
         const data = req.body;
 
-        await Lote.findByIdAndUpdate(data.lote, { estado: false}, {new: true})
+        await Lote.findByIdAndUpdate(data.lote, { estado: false }, { new: true });
 
-        const bodega = new Bodega({
-            ...data
-        });
-
+        const bodega = new Bodega({ ...data });
         await bodega.save();
+
+        const lote = await Lote.findById(data.lote).populate('productos.productoId')
+        for (const producto of lote.productos) {
+            const productId = producto.productoId._id;  
+            const cantidadLote = parseInt(lote.cantidad); 
+
+            await Products.findByIdAndUpdate(
+                productId,
+                { $inc: { cantidadVenta: cantidadLote } },
+                { new: true }
+            );
+        }
 
         res.status(200).json({
             success: true,
             bodega
         });
-
-    }catch(err){
+    } catch (err) {
         res.status(500).json({
             success: false,
             message: 'Error al crear el registro de bodega',
-            error: err.message 
+            error: err.message
         });
     }
 }
+
 
 export const obtenerBodegas = async (req, res) => {
     try {

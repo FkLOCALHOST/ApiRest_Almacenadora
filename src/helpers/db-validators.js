@@ -92,3 +92,10 @@ export const loteExistente = async (id = '') => {
         throw new Error('Lote is not defined'); // Este mensaje es el que aparece
     }
 }
+
+export const productNameExists = async (nombreProducto = '') => {
+    const existe = await Productos.findOne({ nombreProducto });
+    if (existe) {
+        throw new Error(`El producto ${nombreProducto} ya existe`);
+    }
+}

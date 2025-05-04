@@ -206,6 +206,7 @@ export const generarPDFProductos = async (req, res) => {
         descripcion: 150,
         precio: 350,
         categoria: 450,
+        cantidadVenta: 550,
       };
   
       const startY = doc.y;
@@ -213,7 +214,9 @@ export const generarPDFProductos = async (req, res) => {
         .text('Nombre', positions.nombre, startY)
         .text('Descripción', positions.descripcion, startY)
         .text('Precio', positions.precio, startY)
+        .text('Cantidad de venta', positions.cantidadVenta, startY)
         .text('Categoría', positions.categoria, startY);
+
   
       doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
   
@@ -227,6 +230,7 @@ export const generarPDFProductos = async (req, res) => {
             ellipsis: true
           })
           .text(`$${p.precio.toFixed(2)}`, positions.precio, currentY)
+          .text(p.cantidadVenta, positions.cantidadVenta, currentY)
           .text(p.categoria || '-', positions.categoria, currentY);
   
         doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
