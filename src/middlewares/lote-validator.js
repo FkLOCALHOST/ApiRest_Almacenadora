@@ -10,8 +10,8 @@ export const crearLoteValidador = [
     hasRoles("ADMIN_ROLE"),
     body('numeroLote').notEmpty().withMessage('El número del lote es requerido').isLength({ min: 4, max: 15 }).withMessage('El número del lote debe tener entre 4 y 15 caracteres'),
     body('cantidad').notEmpty().withMessage('La cantidad del lote es requerida'),
-    body('fechaCaducidad').notEmpty().withMessage('La fecha de caducidad del lote es requerida'),
-    body('nombreProducto').notEmpty().withMessage('El nombre del producto es requerido').isString().withMessage('El nombre del producto debe ser un texto válido'),
+    body('fechaCaducidad').notEmpty().withMessage('La fecha de caducidad del lote es requerida').isISO8601().withMessage('La fecha de caducidad debe tener un formato válido (YYYY-MM-DD)'),
+    body('productoId').notEmpty().withMessage('El ID del producto es requerido').isMongoId().withMessage('El ID del producto debe valido'),
     validarCampos, 
     handleErrors 
 ];

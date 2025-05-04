@@ -10,41 +10,36 @@ const __dirname = path.dirname(__filename);
 
 export const crearLote = async (req, res) => {
   try {
-      const { numeroLote, cantidad, fechaCaducidad, nombreProducto } = req.body;
+      const { numeroLote, cantidad, fechaCaducidad, productoId } = req.body;
 
-      // Buscar el producto por nombre
-      const producto = await Products.findOne({ nombreProducto });
-if (!producto) {
-    return res.status(404).json({
-        success: false,
-        msg: `No se encontró el producto con el nombre: ${nombreProducto}`,
-    });
-}
+      const producto = await Products.findById(productoId);
+      if (!producto) {
+          return res.status(404).json({
+              success: false,
+              message: `No se encontró el producto con el ID: ${productoId}`,
+          });
+      }
 
-// Crear el lote
-const lote = new Lote({
-    numeroLote,
-    cantidad,
-    fechaCaducidad,
-    productos: [{
-        productoId: producto._id,
-        nombreProducto: producto.nombreProducto || 'Producto sin nombre', // Maneja el caso de nombreProducto undefined
-    }],
-});
+      const lote = new Lote({
+          numeroLote,
+          cantidad,
+          fechaCaducidad,
+          productos: producto._id,
+      });
 
       await lote.save();
 
-      const loteConDatos = await Lote.findById(lote._id).populate('productos.productoId');
+      const loteConDatos = await Lote.findById(lote._id).populate('productos', 'nombreProducto');
 
       return res.status(200).json({
           success: true,
-          msg: 'El lote fue creado exitosamente',
+          message: 'El lote fue creado exitosamente',
           lote: loteConDatos,
       });
   } catch (error) {
       return res.status(500).json({
           success: false,
-          msg: 'Error al crear el Lote',
+          message: 'Error al crear el lote',
           error: error.message,
       });
   }
