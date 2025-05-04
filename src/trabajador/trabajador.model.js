@@ -61,8 +61,7 @@ const trabajadorSchema = Schema({
 })
 
 trabajadorSchema.methods.toJSON = function(){
-    const {_id, contrasenaT, ...trabajador} = this.toObject(); // Excluye la contraseña del objeto retornado
-    trabajador.tid = _id
+    const {contrasenaT, ...trabajador} = this.toObject(); // Excluye la contraseña del objeto retornado
     return trabajador
 }
 

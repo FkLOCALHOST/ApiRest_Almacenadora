@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { agregarBodega, obtenerBodegas, buscarBodega, actualizarBodega, 
-    obtenerBodegasPdf, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida } from "./bodega.controller.js"; 
+    generarPDFBodegas, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida } from "./bodega.controller.js"; 
 import { agregarBodegaValidator, buscarBodegaValidator, eliminarBodegaValidador, listarBodegaValidator } from "../middlewares/bodega-validators.js"; 
 
 const router = Router();
@@ -137,7 +137,7 @@ router.get("/bodegaPorFechaSalida", listarBodegaValidator, obtenerBodegasPorFech
  *       500:
  *         description: Error interno del servidor
  */
-router.get("/pdf", listarBodegaValidator, obtenerBodegasPdf);
+router.get("/pdf", listarBodegaValidator, generarPDFBodegas);
 
 /**
  * @swagger

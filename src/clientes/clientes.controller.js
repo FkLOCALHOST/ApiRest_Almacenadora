@@ -54,14 +54,11 @@ export const obtenerClientePorId = async (req, res) => {
 
 export const listarCientes = async (req, res) => {
     try {
-        const { limite = 10, desde = 0 } = req.query;
         const query = { estado: true };
 
         const [total, clientes] = await Promise.all([
             Clientes.countDocuments(query),
             Clientes.find(query)
-                .skip(Number(desde))
-                .limit(Number(limite))
         ]);
 
         return res.status(200).json({

@@ -66,7 +66,9 @@ export const buscarBodega = async (req, res) => {
     const { idBodega } = req.params;
 
     try{
-        const bodega = await Bodega.findById(idBodega);
+        const bodega = await Bodega.findById(idBodega)
+        .populate("trabajador")
+        .populate("lote");;
 
         if(!bodega){
             return res.status(404).json({ 
@@ -137,81 +139,6 @@ export const actualizarBodega = async(req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Error al actualizar la bodega',
-            error: err.message
-        });
-    }
-};
-
-
-export const obtenerBodegasPdf = async (req, res) => {
-    try {
-        
-        const bodegas = await Bodega.find()
-            .populate('lote', 'numeroLote cantidad fechaCaducidad productos estado')
-            .populate('trabajador', 'nombreT apellidoT dpi telefonoT correoT');
-
-        if (!bodegas || bodegas.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "No se encontraron registros de la bodega"
-            });
-        }
-
-        const doc = new PDFDocument({ margin: 40, size: 'A4' });
-        const outputPath = path.join(__dirname, `../../public/uploads/bodegas-listado${Date.now()}.pdf`);
-        doc.pipe(fs.createWriteStream(outputPath));
-
-        
-        doc.fontSize(20).text('Listado de Bodegas', { align: 'center' });
-        doc.moveDown();
-
-        bodegas.forEach((bodega, index) => {
-            doc
-                .fontSize(14)
-                .fillColor('#000')
-                .text(`Bodega #${index + 1}`, { underline: true });
-
-            doc
-                .fontSize(12)
-                .text(`Numero de bodega: ${bodega.numeroBodega || 'N/A'}`)
-                .text(`Fecha de ingreso: ${bodega.fechaIngreso || 'N/A'}`)
-                .text(`Fecha de salida: ${bodega.fechaSalida || 'N/A'}`)
-                .moveDown(0.3);
-
-            doc
-                .font('Helvetica-Bold').text('Lote:', { continued: true }).font('Helvetica')
-                .text(`  #${bodega.lote.numeroLote} | Estado: ${bodega.lote.estado}`)
-                .text(`  Cantidad: ${bodega.lote.cantidad}`)
-                .text(`  Fecha de caducidad: ${bodega.lote.fechaCaducidad}`)
-                .moveDown(0.3);
-
-            doc
-                .font('Helvetica-Bold').text('Trabajador:', { continued: true }).font('Helvetica')
-                .text(`  ${bodega.trabajador.nombreT} ${bodega.trabajador.apellidoT}`)
-                .text(`  DPI: ${bodega.trabajador.dpi}`)
-                .text(`  Teléfono: ${bodega.trabajador.telefonoT}`)
-                .text(`  Correo: ${bodega.trabajador.correoT}`)
-                .moveDown();
-
-          
-            doc.moveTo(40, doc.y).lineTo(555, doc.y).strokeColor('#999').stroke();
-            doc.moveDown();
-        });
-
-        doc.end();
-       
-
-        return res.status(200).json({
-            success: true,
-            total: bodegas.length,
-            message: 'PDF generado correctamente',
-            rutaPDF: '/uploads/bodegas-listado.pdf'
-        });
-
-    }catch(err){
-        return res.status(500).json({
-            success: false,
-            message: "Error al obtener los registros en bodega",
             error: err.message
         });
     }
@@ -383,5 +310,93 @@ export const obtenerBodegasPorFechaSalida = async (req, res) => {
     }
 };
 
+
+
+export const generarPDFBodegas = async (req, res) => { 
+    try {
+      const { filtro } = req.query;
+  
+      const query = { estado: true };
+      let sortOptions = {};
+  
+      switch (filtro) {
+        case 'ingreso-antiguo':
+          sortOptions = { fechaIngreso: 1 };
+          break;
+        case 'ingreso-reciente':    
+          sortOptions = { fechaIngreso: -1 };
+          break;
+        case 'salida-reciente':
+          sortOptions = { fechaSalida: -1 };
+          break;
+        case 'salida-antigua':
+          sortOptions = { fechaSalida: 1 };
+          break;
+        default:
+          sortOptions = {};
+      }
+  
+      const bodegas = await Bodega.find(query).sort(sortOptions)
+      .populate('lote', 'numeroLote')
+    .populate('trabajador', 'dpi');
+  
+      if (bodegas.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: 'No hay bodegas activas para mostrar en el PDF.'
+        });
+      }
+  
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', 'attachment; filename=bodegas.pdf');
+  
+      const doc = new PDFDocument({ margin: 30 });
+      doc.pipe(res);
+  
+      doc.fontSize(18).text('Listado de Bodegas Salientes', { align: 'center' });
+      doc.moveDown(2);
+  
+      const positions = {
+        numeroBodega: 50,
+        fechaIngreso: 150,
+        fechaSalida: 280,
+        lote: 380,
+        trabajador: 430
+      };
+  
+      const startY = doc.y;
+      doc.fontSize(12)
+        .text('No. Bodega', positions.numeroBodega, startY)
+        .text('Fecha de Ingreso', positions.fechaIngreso, startY)
+        .text('Fecha de Salida', positions.fechaSalida, startY)
+        .text('Lote', positions.lote, startY)
+        .text('Trabajador', positions.trabajador, startY);
+  
+      doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
+  
+      let currentY = startY + 25;
+  
+      bodegas.forEach((bodega) => {
+        doc.fontSize(10)
+          .text(bodega.numeroBodega, positions.numeroBodega, currentY)
+          .text((bodega.fechaIngreso).toLocaleDateString('en-GB'), positions.fechaIngreso, currentY)
+          .text((bodega.fechaSalida).toLocaleDateString('en-GB') || '-', positions.fechaSalida, currentY)
+          .text(bodega.lote.numeroLote || '-', positions.lote, currentY)
+          .text(bodega.trabajador.dpi || '-', positions.trabajador, currentY)
+  
+        doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
+        currentY += 25;
+      });
+  
+      doc.end();
+  
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: 'Error al generar el PDF de bodega',
+        error: err.message
+      });
+    }
+  };
 
 
