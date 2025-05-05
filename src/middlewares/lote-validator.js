@@ -14,6 +14,7 @@ export const crearLoteValidador = [
     body('productoId').notEmpty().withMessage('El ID del producto es requerido').isMongoId().withMessage('El ID del producto debe valido'),
     validarCampos, 
     handleErrors 
+
 ];
 
 export const obtenerLotePorIdValidador = [
