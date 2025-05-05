@@ -1,0 +1,560 @@
+[{
+  "_id": {
+    "$oid": "68142678a323d5d8896b9a82"
+  },
+  "nombre": "Brau",
+  "apellido": "Echeverria",
+  "correo": "brau@gmail.com",
+  "telefono": "12345678",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T01:57:12.282Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T03:59:41.142Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68143f635f13f8c51878fadc"
+  },
+  "nombre": "Huevo",
+  "apellido": "Egginer",
+  "correo": "huevo@gmail.com",
+  "telefono": "12387654",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-02T03:43:31.024Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T03:43:31.024Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681440465f13f8c51878fafb"
+  },
+  "nombre": "Java",
+  "apellido": "ManAa",
+  "correo": "javaman@gmail.com",
+  "telefono": "98745632",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T03:47:18.970Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:13:22.988Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681440825f13f8c51878fb07"
+  },
+  "nombre": "Java",
+  "apellido": "XD",
+  "correo": "javamana@gmail.com",
+  "telefono": "12365490",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T03:48:18.559Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T04:54:11.856Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681441025f13f8c51878fb17"
+  },
+  "nombre": "Alessandra",
+  "apellido": "Cristel",
+  "correo": "ale@gmail.com",
+  "telefono": "10101088",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T03:50:26.406Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T03:58:43.544Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814415d5f13f8c51878fb27"
+  },
+  "nombre": "1A",
+  "apellido": "1A",
+  "correo": "11A@gmail.com",
+  "telefono": "11111111",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T03:51:57.350Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T03:59:49.232Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681444185f13f8c51878fb4c"
+  },
+  "nombre": "Monica",
+  "apellido": "Ruiz",
+  "correo": "asA@gmail.com",
+  "telefono": "15236578",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T04:03:36.695Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T04:03:51.974Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814508eb49ac234bf597c0f"
+  },
+  "nombre": "Java",
+  "apellido": "Egginer",
+  "correo": "javAa2aman@gmail.com",
+  "telefono": "12360055",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T04:56:46.549Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:34:25.738Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814510cb49ac234bf597c27"
+  },
+  "nombre": "Java",
+  "apellido": "Egginer",
+  "correo": "jaAavaman@gmail.com",
+  "telefono": "98000632",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T04:58:52.695Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T02:09:41.472Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681451f2b49ac234bf597c3c"
+  },
+  "nombre": "Test",
+  "apellido": "test",
+  "correo": "test@gmail.com",
+  "telefono": "00011122",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T05:02:42.641Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T16:58:31.993Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68145241b49ac234bf597c4f"
+  },
+  "nombre": "test2",
+  "apellido": "test2",
+  "correo": "test2@gmail.com",
+  "telefono": "98989898",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T05:04:01.088Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T11:29:33.338Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68145256b49ac234bf597c5f"
+  },
+  "nombre": "Java",
+  "apellido": "asdfasdf",
+  "correo": "asdfaA@gmail.com",
+  "telefono": "55566633",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T05:04:22.465Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:13:58.008Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814541db49ac234bf597c74"
+  },
+  "nombre": "Java",
+  "apellido": "Script",
+  "correo": "asdfa@gmail.com",
+  "telefono": "88889999",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-02T05:11:57.440Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T16:59:31.921Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814acb85da1eecaeed386ed"
+  },
+  "nombre": "Peru",
+  "apellido": "KasaJIstan",
+  "correo": "pr@gmail.com",
+  "telefono": "11118555",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-02T11:30:00.614Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T11:39:17.114Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814f876e34f73a15906fa03"
+  },
+  "nombre": "Erick",
+  "apellido": "Soco",
+  "correo": "javamasdfasdAan@gmail.com",
+  "telefono": "88337766",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T16:53:10.133Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T17:10:23.483Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814fc947bf61133fda0556a"
+  },
+  "nombre": "Java",
+  "apellido": "PERU",
+  "correo": "javamASDFASan@gmail.com",
+  "telefono": "66644422",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-02T17:10:44.118Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-02T17:10:44.118Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814fefd7bf61133fda05594"
+  },
+  "nombre": "jsjsjs",
+  "apellido": "Ale",
+  "correo": "ala@gmail.com",
+  "telefono": "98245512",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T17:21:01.065Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:00:31.830Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6814ff8c7bf61133fda055ac"
+  },
+  "nombre": "JUan",
+  "apellido": "Jpse",
+  "correo": "jj@gmail.com",
+  "telefono": "32559872",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-02T17:23:24.337Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:34:54.338Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162bdcb053521e96057698"
+  },
+  "nombre": "asdfa",
+  "apellido": "aaa",
+  "correo": "javAaa2aman@gmail.com",
+  "telefono": "88889999",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T14:44:44.367Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:14:01.656Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162bf2b053521e960576a4"
+  },
+  "nombre": "Java",
+  "apellido": "asdfasdf",
+  "correo": "asdAfa@gmail.com",
+  "telefono": "88880999",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T14:45:06.388Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:16:08.481Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162c68b053521e960576b7"
+  },
+  "nombre": "Aaasdfasdf",
+  "apellido": "Te",
+  "correo": "aasdf^@gmail.com",
+  "telefono": "82289999",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T14:47:04.405Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:15:53.248Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162c9c6673c93fe96c9083"
+  },
+  "nombre": "Java",
+  "apellido": "Egginer",
+  "correo": "praa@gmail.com",
+  "telefono": "81189999",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-03T14:47:56.623Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:47:56.623Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162d646496931bfdee6769"
+  },
+  "nombre": "test2",
+  "apellido": "Egginer",
+  "correo": "javaaaaaaan@gmail.com",
+  "telefono": "88889999",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-03T14:51:16.892Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:51:16.892Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162e256496931bfdee677f"
+  },
+  "nombre": "test2",
+  "apellido": "Egginer",
+  "correo": "javasman@gmail.com",
+  "telefono": "88889999",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T14:54:29.820Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:15:49.367Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681634626496931bfdee67b4"
+  },
+  "nombre": "ZXC",
+  "apellido": "Egginer",
+  "correo": "jaaaaaaaaaaaaavaman@gmail.com",
+  "telefono": "88889999",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-03T15:21:06.197Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T15:21:06.197Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681634796496931bfdee67c0"
+  },
+  "nombre": "test2",
+  "apellido": "Egginer",
+  "correo": "jav!aman@gmail.com",
+  "telefono": "88889999",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:21:29.750Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:16:13.392Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681634b26496931bfdee67d0"
+  },
+  "nombre": "JavaadfA",
+  "apellido": "wwww",
+  "correo": "javamawwwwwn@gmail.com",
+  "telefono": "80859998",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:22:26.076Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:13:35.609Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681634e06496931bfdee67dc"
+  },
+  "nombre": "Java ",
+  "apellido": "XD",
+  "correo": "te25@gmail.com",
+  "telefono": "86540999",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:23:12.064Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:16:06.528Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816357e6496931bfdee67ec"
+  },
+  "nombre": "test",
+  "apellido": "emailMistake",
+  "correo": "testEmial@gmail.com",
+  "telefono": "56986600",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:25:50.125Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:13:31.265Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681635be6496931bfdee67f8"
+  },
+  "nombre": "TEST c",
+  "apellido": "cORREO NO ",
+  "correo": "ESTEcorreono@gmail.com",
+  "telefono": "12395617",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:26:54.167Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:13:28.617Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681636056496931bfdee6810"
+  },
+  "nombre": "esteNp",
+  "apellido": "email",
+  "correo": "noExisitseEmail@gmail.com",
+  "telefono": "55466890",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:28:05.255Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:13:45.433Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681636426496931bfdee681c"
+  },
+  "nombre": "Braulio",
+  "apellido": "yolo",
+  "correo": "diligente01@gmail.com",
+  "telefono": "46321205",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:29:06.158Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:15:38.864Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681636996496931bfdee6831"
+  },
+  "nombre": "test2a",
+  "apellido": "Egginera",
+  "correo": "ESTEcorreonoDilige11@gmail.com",
+  "telefono": "46460202",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:30:33.278Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:16:00.080Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68163731a6c46d34268a1ffe"
+  },
+  "nombre": "Sinovalida",
+  "apellido": "noSe",
+  "correo": "AyudenmeEmail@yahoo.com",
+  "telefono": "97035670",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:33:05.725Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:15:43.504Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816380325756021a671c522"
+  },
+  "nombre": "Brau",
+  "apellido": "Echeverria",
+  "correo": "br7878784Duateu@gmail.com",
+  "telefono": "12345678",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-03T15:36:35.997Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T04:15:57.536Z"
+  }
+}]

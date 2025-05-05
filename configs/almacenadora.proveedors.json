@@ -1,0 +1,135 @@
+[{
+  "_id": {
+    "$oid": "68161efb488f9c06a5c9b6d0"
+  },
+  "nombre": "Foremost",
+  "telefono": 123450796,
+  "direccion": "Foremost@gmail.com",
+  "estado": "ACTIVO",
+  "createdAt": {
+    "$date": "2025-05-03T13:49:47.655Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T13:49:47.655Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68162012488f9c06a5c9b6dc"
+  },
+  "nombre": "test2",
+  "telefono": 80089999,
+  "direccion": "test3 landia",
+  "estado": "INACTIVO",
+  "createdAt": {
+    "$date": "2025-05-03T13:54:26.064Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:02:03.747Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681620e7488f9c06a5c9b6f0"
+  },
+  "nombre": "Javaa",
+  "telefono": 11018550,
+  "direccion": "tesst landiaa",
+  "estado": "INACTIVO",
+  "createdAt": {
+    "$date": "2025-05-03T13:57:59.062Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T13:59:43.171Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681621f5488f9c06a5c9b745"
+  },
+  "nombre": "JUan",
+  "telefono": 11403189,
+  "direccion": "testing landia",
+  "estado": "ACTIVO",
+  "createdAt": {
+    "$date": "2025-05-03T14:02:29.142Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:02:29.142Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816225f488f9c06a5c9b75b"
+  },
+  "nombre": "Java",
+  "telefono": 901010880,
+  "direccion": "atest landiaasasdf",
+  "estado": "ACTIVO",
+  "createdAt": {
+    "$date": "2025-05-03T14:04:15.791Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:20:25.668Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816254c488f9c06a5c9b7aa"
+  },
+  "nombre": "JavaXD",
+  "telefono": 21232545,
+  "direccion": "asfdas",
+  "estado": "ACTIVO",
+  "createdAt": {
+    "$date": "2025-05-03T14:16:44.038Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-03T14:16:44.038Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816bbfde855265ab0a9a482"
+  },
+  "nombre": "Juan",
+  "telefono": 89870200,
+  "direccion": "Melgar",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-04T00:59:41.650Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T14:38:00.047Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68177bc05a5e7de2fc3a1faf"
+  },
+  "nombre": "Dianaa",
+  "telefono": 54678900,
+  "direccion": "6ta calle",
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-04T14:37:52.297Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T01:57:39.932Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68181b2c7f547cb56a37553a"
+  },
+  "nombre": "dfds",
+  "telefono": 12365490,
+  "direccion": "ADFASDFAS",
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-05T01:58:04.628Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T02:09:37.224Z"
+  }
+}]
