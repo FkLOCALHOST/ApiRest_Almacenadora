@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "68142efb8c60b348bc83b737"
+  },
+  "nombreProducto": "Tomate",
+  "descripcion": "Tomates del estado de Guatemala",
+  "precio": 5,
+  "categoria": "Verduras",
+  "urlImagen": "tomates.png",
+  "cantidadVenta": 20,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "6816bdc4e855265ab0a9a4dc"
+  },
+  "nombreProducto": "Manzana",
+  "descripcion": "Producto perecedero",
+  "precio": 5,
+  "categoria": "Alimentos",
+  "urlImagen": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.recetasnestlecam.com%2Fescuela-sabor%2Fingredientes%2Fmanzana-verde-roja&psig=AOvVaw0k8IAViwYInXK8x5IN3LWt&ust=1746407097392000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJin6MfPiI0DFQAAAAAdAAAAABAE",
+  "cantidadVenta": 5,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "6816bdc4e855265ab0a9a4df"
+  },
+  "nombreProducto": "Manzana",
+  "descripcion": "Producto perecedero",
+  "precio": 5,
+  "categoria": "Alimentos",
+  "urlImagen": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.recetasnestlecam.com%2Fescuela-sabor%2Fingredientes%2Fmanzana-verde-roja&psig=AOvVaw0k8IAViwYInXK8x5IN3LWt&ust=1746407097392000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJin6MfPiI0DFQAAAAAdAAAAABAE",
+  "cantidadVenta": 1,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "6817945cee3cb3d6bec4decf"
+  },
+  "nombreProducto": "TE",
+  "descripcion": "TE VERDE SPLENDA",
+  "precio": 200,
+  "categoria": "Alimentos",
+  "urlImagen": "https://splenda.la/wp-content/uploads/2019/03/endulzante-splenda_stevia_sobres.png",
+  "cantidadVenta": 0,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "6817945cee3cb3d6bec4ded2"
+  },
+  "nombreProducto": "TE",
+  "descripcion": "TE VERDE SPLENDA",
+  "precio": 200,
+  "categoria": "Alimentos",
+  "urlImagen": "https://splenda.la/wp-content/uploads/2019/03/endulzante-splenda_stevia_sobres.png",
+  "cantidadVenta": 0,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "68181c84c7b31dd96bf51e61"
+  },
+  "nombreProducto": "JOcotes",
+  "descripcion": "Producto perecedero",
+  "precio": 15,
+  "categoria": "asdf",
+  "urlImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsx37CfgeMXC1wwrgs6nNiwMHyGGthSf6IzN1E6Zo0cxQGknf8nzU4V90IzVznKrs1ODW48C0IIAKz9iJh5etO5Rrluzq6G6U02xZJ7w",
+  "cantidadVenta": 0,
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "68181c84c7b31dd96bf51e64"
+  },
+  "nombreProducto": "JOcotes",
+  "descripcion": "Producto perecedero",
+  "precio": 15,
+  "categoria": "asdf",
+  "urlImagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsx37CfgeMXC1wwrgs6nNiwMHyGGthSf6IzN1E6Zo0cxQGknf8nzU4V90IzVznKrs1ODW48C0IIAKz9iJh5etO5Rrluzq6G6U02xZJ7w",
+  "cantidadVenta": 0,
+  "estado": true
+}]

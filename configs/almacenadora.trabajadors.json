@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "681424a4a323d5d8896b9a5f"
+  },
+  "nombreT": "Daniel",
+  "dpi": "1234567890123",
+  "apellidoT": "Sacol",
+  "correoT": "dsacol10@gmail.com",
+  "telefonoT": "33815217",
+  "estadoT": true,
+  "rendimientoT": 100,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$114pwxm97Tp3bD/sI3fQ6A$aPXrxzScYmiNAuJg1kDuW9JeCPGTzWtl0/IywAY6bgA",
+  "fotoDePerfil": null,
+  "role": "ADMIN_ROLE"
+},
+{
+  "_id": {
+    "$oid": "681424e5a323d5d8896b9a68"
+  },
+  "nombreT": "Diego",
+  "dpi": "1458963215489",
+  "apellidoT": "Bercian",
+  "correoT": "dbercian@gmail.com",
+  "telefonoT": "49099817",
+  "estadoT": true,
+  "rendimientoT": 90,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$ErY7IYXdggUbIx/J5eSrag$t6+RkkMi8aTDlmkniAHGF0yKAPxrjDsisMpNWp53ECE",
+  "fotoDePerfil": null,
+  "role": "ADMIN_ROLE"
+},
+{
+  "_id": {
+    "$oid": "68144aca297d3172d9371303"
+  },
+  "nombreT": "notAdmin",
+  "dpi": "1458963215000",
+  "apellidoT": "test",
+  "correoT": "luis2025@gmail.com",
+  "telefonoT": "99889988",
+  "estadoT": true,
+  "rendimientoT": 0,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$DNDeHOFFEG2Cu2YbZqRTKQ$AHTBkFizsLf0g3i/3TwrY343kO8tAdFeF7BiHabNuEM",
+  "fotoDePerfil": null,
+  "role": "EMPLEADO_ROLE"
+},
+{
+  "_id": {
+    "$oid": "6814b098441adcf0d51bbc52"
+  },
+  "nombreT": "Luis",
+  "dpi": "0111121314121",
+  "apellidoT": "Cordova",
+  "correoT": "test1@gmail.com",
+  "telefonoT": "12345678",
+  "estadoT": true,
+  "rendimientoT": 50,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$LuatM4j2aOFORAVwY7R6aA$EGEAdwpPceZBCaatHyDEZtMJB0kCo/OGncbxIixKZ4I",
+  "fotoDePerfil": null,
+  "role": "EMPLEADO_ROLE"
+},
+{
+  "_id": {
+    "$oid": "6816d0f01d97f8319242570e"
+  },
+  "nombreT": "Luis",
+  "dpi": "1640009877777",
+  "apellidoT": "Cordova",
+  "correoT": "email0@gmail.com",
+  "telefonoT": "11115554",
+  "estadoT": true,
+  "rendimientoT": 0,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$vcX0+837FZO1ztQK1lEXNQ$WwRlNw1C6vyQlcpzpthzrJj1PcoowZ3kZanGFa9uS1I",
+  "fotoDePerfil": null,
+  "role": "EMPLEADO_ROLE"
+},
+{
+  "_id": {
+    "$oid": "6816f4b3b450facd994a88e2"
+  },
+  "nombreT": "Asfer",
+  "dpi": "1234587412123",
+  "apellidoT": "Asfer",
+  "correoT": "luaaQis202@gmail.com",
+  "telefonoT": "11115555",
+  "estadoT": true,
+  "rendimientoT": 2,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$+H0gKlGdOmmrtvRyY9Fq4Q$Ql3v/x7yIDO0ISzUyPrwGXTthVb2d9ZvWDzRuFGF6Gc",
+  "fotoDePerfil": null,
+  "role": "EMPLEADO_ROLE"
+},
+{
+  "_id": {
+    "$oid": "6816f533b450facd994a88f2"
+  },
+  "nombreT": "Asferaa",
+  "dpi": "1234587488812",
+  "apellidoT": "Asfer",
+  "correoT": "DuARTEopaQis202@gmail.com",
+  "telefonoT": "11115555",
+  "estadoT": true,
+  "rendimientoT": 0,
+  "contrasenaT": "$argon2id$v=19$m=65536,t=3,p=4$35RCXnNz8ohGlH5b03czqg$FGFQfSBWaaGpeszeu1um54iZFMClQukT9pym5x8hNqM",
+  "fotoDePerfil": null,
+  "role": "EMPLEADO_ROLE"
+}]

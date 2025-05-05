@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { agregarBodega, obtenerBodegas, buscarBodega, actualizarBodega, 
-    obtenerBodegasPdf, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida } from "./bodega.controller.js"; 
-import { agregarBodegaValidator, buscarBodegaValidator, eliminarBodegaValidador } from "../middlewares/bodega-validators.js"; 
+    generarPDFBodegas, obtenerBodegaPdf, eliminarBodega, obtenerBodegasPorFechaIngreso, obtenerBodegasPorFechaSalida } from "./bodega.controller.js"; 
+import { agregarBodegaValidator, buscarBodegaValidator, eliminarBodegaValidador, listarBodegaValidator } from "../middlewares/bodega-validators.js"; 
 
 const router = Router();
 
@@ -64,7 +64,7 @@ router.post("/agregarBodega", agregarBodegaValidator, agregarBodega);
  *       500:
  *         description: Error interno del servidor
  */
-router.get("/", obtenerBodegas);
+router.get("/", listarBodegaValidator, obtenerBodegas);
 
 /**
  * @swagger
@@ -105,7 +105,7 @@ router.get("/buscarBodega/:idBodega", buscarBodegaValidator, buscarBodega);
  *       500:
  *         description: Error interno del servidor
  */
-router.get("/bodegaPorFechaIngreso", obtenerBodegasPorFechaIngreso);
+router.get("/bodegaPorFechaIngreso", listarBodegaValidator, obtenerBodegasPorFechaIngreso);
 
 /**
  * @swagger
@@ -121,7 +121,7 @@ router.get("/bodegaPorFechaIngreso", obtenerBodegasPorFechaIngreso);
  *       500:
  *         description: Error interno del servidor
  */
-router.get("/bodegaPorFechaSalida", obtenerBodegasPorFechaSalida);
+router.get("/bodegaPorFechaSalida", listarBodegaValidator, obtenerBodegasPorFechaSalida);
 
 /**
  * @swagger
@@ -137,7 +137,7 @@ router.get("/bodegaPorFechaSalida", obtenerBodegasPorFechaSalida);
  *       500:
  *         description: Error interno del servidor
  */
-router.get("/pdf", obtenerBodegasPdf);
+router.get("/pdf", listarBodegaValidator, generarPDFBodegas);
 
 /**
  * @swagger

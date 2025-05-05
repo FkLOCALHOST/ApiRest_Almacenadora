@@ -1,6 +1,23 @@
 import { Router } from "express";
-import { crearLote, obtenerLotePorId, listarLotes, eliminarLote, actualizarLote, generarPDFLotes } from "./lote.controller.js";
-import { crearLoteValidador, obtenerLotePorIdValidador, listarLotesValidador, eliminarLoteValidador, actualizarLotesValidador } from "../middlewares/lote-validator.js";
+import {
+  crearLote,
+  obtenerLotePorId,
+  listarLotes,
+  eliminarLote,
+  actualizarLote,
+  generarPDFLotes,
+  obtenerTotalProductos,
+  listarTotalProductos,
+  sumarPrecioTotalLotes,
+} from "./lote.controller.js";
+import {
+  crearLoteValidador,
+  obtenerLotePorIdValidador,
+  listarLotesValidador,
+  eliminarLoteValidador,
+  actualizarLotesValidador,
+  listarTotalProductosValidador,
+} from "../middlewares/lote-validator.js";
 
 const router = Router();
 
@@ -67,7 +84,11 @@ router.post("/crearLote", crearLoteValidador, crearLote);
  *       500:
  *         description: Error interno del servidor.
  */
-router.get("/obtenerLotePorId/:id", obtenerLotePorIdValidador, obtenerLotePorId);
+router.get(
+  "/obtenerLotePorId/:id",
+  obtenerLotePorIdValidador,
+  obtenerLotePorId
+);
 
 /**
  * @swagger
@@ -184,6 +205,19 @@ router.put("/actualizarLote/:id", actualizarLotesValidador, actualizarLote);
  *       500:
  *         description: Error interno del servidor.
  */
-router.get("/generarPDFLotes", generarPDFLotes);
+router.get("/generarPDFLotes", listarLotesValidador, generarPDFLotes);
+
+router.get("/totalProductos", listarLotesValidador, obtenerTotalProductos);
+
+router.get(
+  "/CantidadTotalProductos",
+  listarTotalProductosValidador,
+  listarTotalProductos
+);
+router.get(
+  "/sumarPrecioTotalLotes",
+  listarLotesValidador,
+  sumarPrecioTotalLotes
+);
 
 export default router;

@@ -17,13 +17,9 @@ const loteSchema =  new Schema({
         required: true
     },
     productos: {
-        type: [{
-            productoId: {
-                type: Schema.Types.ObjectId,
-                ref: 'Products',
-                required: true
-            }
-        }]
+        type: Schema.Types.ObjectId,
+        ref: 'Products',
+        required: [true, "El producto es requerido"]
     },
     estado: {
         type: Boolean,

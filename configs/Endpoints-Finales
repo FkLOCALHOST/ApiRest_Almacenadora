@@ -1,0 +1,1447 @@
+{
+	"info": {
+		"_postman_id": "ead654e9-ca5d-4179-99e6-a12d2a9756b1",
+		"name": "Almacenadora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38160952"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreT\": \"Emanuel\",\r\n    \"dpi\": \"1458963215459\",\r\n    \"apellidoT\": \"Bercian\",\r\n    \"correoT\": \"emmanuel@gmail.com\",\r\n    \"telefonoT\": \"49092817\",\r\n    \"contrasenaT\": \"dBercia4n!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correoT\": \"dbercian@gmail.com\",\r\n    \"contrasenaT\": \"dBercia4n!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bodega",
+			"item": [
+				{
+					"name": "Agregar Bodega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaIngreso\": \"2024-10-05\",\r\n    \"fechaSalida\": \"2024-10-06\",\r\n    \"lote\": \"6813dd84528e51441f3caceb\",\r\n    \"trabajador\": \"68104f6306d97dbf8f5b0a13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/agregarBodega",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"agregarBodega"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Bodegas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Bodega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/buscarBodega/6813de0b528e51441f3cad13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"buscarBodega",
+								"6813de0b528e51441f3cad13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Bodega",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaIngreso\": \"2022-03-03\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/actualizarBodega/6813de0b528e51441f3cad13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"actualizarBodega",
+								"6813de0b528e51441f3cad13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Bodegas Pdf",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/pdf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"pdf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Bodega Pdf",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/buscarBodegaPdf/6813de0b528e51441f3cad13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"buscarBodegaPdf",
+								"6813de0b528e51441f3cad13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Bodega Por Fecha Ingreso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/bodegaPorFechaIngreso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"bodegaPorFechaIngreso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Bodega Por Fecha Salida",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/bodega/bodegaPorFechaSalida",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"bodega",
+								"bodegaPorFechaSalida"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Agregar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreProducto\": \"Banano\",\r\n    \"descripcion\": \"Banano Amarillo maduro\",\r\n    \"precio\": 3.00,\r\n    \"categoria\": \"Frutas\",\r\n    \"urlImagen\": \"https://i0.wp.com/upload.wikimedia.org/wikipedia/commons/thumb/6/69/Banana.png/300px-Banana.png=\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/agregarProducto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"agregarProducto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/listarProductos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"listarProductos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/buscarProducto/6813dcbb3e3cfccd983d5a68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"buscarProducto",
+								"6813dcbb3e3cfccd983d5a68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Banano común\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/actualizarProducto/6813dcbb3e3cfccd983d5a68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"actualizarProducto",
+								"6813dcbb3e3cfccd983d5a68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/eliminarProducto/6813c5e98a8ea5655bfb5d3b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"eliminarProducto",
+								"6813c5e98a8ea5655bfb5d3b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generar PDF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/productos/generarPDFProductos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"productos",
+								"generarPDFProductos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lotes",
+			"item": [
+				{
+					"name": "Agregar Lote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroLote\": \"4851\",\r\n    \"cantidad\": \"2\",\r\n    \"fechaCaducidad\": \"2025-11-02\",\r\n    \"productoId\": \"6813dcbb3e3cfccd983d5a68\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/lote/crearLote",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"lote",
+								"crearLote"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Lote",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/lote/obtenerLotePorId/6813dd84528e51441f3caceb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"lote",
+								"obtenerLotePorId",
+								"6813dd84528e51441f3caceb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Lotes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/lote/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"lote",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Lote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cantidad\": \"5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/lote/actualizarLote/6813dd84528e51441f3caceb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"lote",
+								"actualizarLote",
+								"6813dd84528e51441f3caceb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Lote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDU5NjkzODMsImV4cCI6MTc0NTk3Mjk4M30.Pzc0owAiJVt_WL-R1MJxzCkxbE8chikrtCOAFxEXFRQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/lote/eliminarLote/6811671fea244173c9d1ddab",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"lote",
+								"eliminarLote",
+								"6811671fea244173c9d1ddab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generar PDF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMzIxNTAsImV4cCI6MTc0NjEzNTc1MH0.GQR2g5M7neWC2P6mFi6_lSRLJNW05MBYWKgjI0eh2qo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/lote/generarPDFLotes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"lote",
+								"generarPDFLotes",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trabajadores",
+			"item": [
+				{
+					"name": "Listar Trabajadores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/trabajador/obtenerTrabajadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"trabajador",
+								"obtenerTrabajadores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Trabajador",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apellidoT\": \"Bercian Pérez\",\r\n    \"rendimientoT\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/trabajador/actualizarEmpleado/681160515aabf72f19e4a8fa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"trabajador",
+								"actualizarEmpleado",
+								"681160515aabf72f19e4a8fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Trabajador",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/trabajador/eliminarEmpleado/6813d5e58fc69f9d91f7eaa3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"trabajador",
+								"eliminarEmpleado",
+								"6813d5e58fc69f9d91f7eaa3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generar PDF",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"filtro\": \"A-Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/trabajador/generarPDFTrabajadores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"trabajador",
+								"generarPDFTrabajadores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Proveedor",
+			"item": [
+				{
+					"name": "Agregar Proveedor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Grupo PIT\",\r\n    \"telefono\": 22160590,\r\n    \"direccion\": \"7A Avenida 13-55\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/agregar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Proveedores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/listar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"listar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Proveedor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Sigma Alimentos\",\r\n    \"telefono\": 47859652,\r\n    \"direccion\": \"7A Avenida 13-52\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/actualizar/6813d7ba37fbbef5f414ac93",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"actualizar",
+								"6813d7ba37fbbef5f414ac93"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Proveedor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/buscar/Livsmart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"buscar",
+								"Livsmart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar Estado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/cambiar-estado/6813d7ba37fbbef5f414ac93",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"cambiar-estado",
+								"6813d7ba37fbbef5f414ac93"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Proveedor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/eliminar/6813d98f2ec5cc25474d7e12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"eliminar",
+								"6813d98f2ec5cc25474d7e12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generar PDF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/proveedor/generarReporte",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"proveedor",
+								"generarReporte"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Agregar Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Carlos\",\r\n    \"apellido\": \"Morales\",\r\n    \"correo\": \"cmorales@gmail.com\",\r\n    \"telefono\": \"89653256\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/agregarClientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"agregarClientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/obtenerClientePorId/6813dae78736243ff2cb96f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"obtenerClientePorId",
+								"6813dae78736243ff2cb96f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apellido\": \"Cordoba Ruiz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/actualizarClientes/6813dae78736243ff2cb96f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"actualizarClientes",
+								"6813dae78736243ff2cb96f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cliente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/eliminarClientes/6813db048736243ff2cb96f7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"eliminarClientes",
+								"6813db048736243ff2cb96f7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generar PDF",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aWQiOiI2ODExNjA1MTVhYWJmNzJmMTllNGE4ZmEiLCJpYXQiOjE3NDYxMjk2OTUsImV4cCI6MTc0NjEzMzI5NX0.7q3vfVP3EZcJRDz8uE_BfWBmbWJrBYKFU2THaDEAyZA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/almacenadora/v1/clientes/generarPDFClientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"almacenadora",
+								"v1",
+								"clientes",
+								"generarPDFClientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

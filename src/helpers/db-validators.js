@@ -2,6 +2,9 @@ import Trabajador from '../trabajador/trabajador.model.js';
 import Productos from "../productos/productos.model.js";
 import Clientes from "../clientes/clientes.model.js";
 import Proveedor from '../proveedor/proveedor.model.js';
+import Bodega from "../bodega/bodega.model.js"
+import Lote from "../lote/lote.model.js"
+
 
 export const esRolTrabajador = async (tid = " ") => {
     const trabajador = await Trabajador.findById(tid)
@@ -54,10 +57,10 @@ export const clienteExistente = async (id = '') => {
     }
 }
 
-export const nameExists = async (name = "") => {
-    const exsite = await Proveedor.findOne({name})
+export const nameExists = async (nombre = "") => {
+    const exsite = await Proveedor.findOne({nombre})
     if (exsite) {
-        throw new Error(`El nombre ${name} ya existe`)
+        throw new Error(`El nombre ${nombre} ya existe`)
     }
 }
 
@@ -83,10 +86,16 @@ export const bodegaExists = async (idBodega = '') => {
 }
 
 
-
 export const loteExistente = async (id = '') => {
-    const existe = await Lote.findById(id)
-    if(!existe){
-        throw new Error('No existe un lote con el ID proporcionado')
+    const existe = await Lote.findById(id);
+    if (!existe) {
+        throw new Error('Lote is not defined'); // Este mensaje es el que aparece
+    }
+}
+
+export const productNameExists = async (nombreProducto = '') => {
+    const existe = await Productos.findOne({ nombreProducto });
+    if (existe) {
+        throw new Error(`El producto ${nombreProducto} ya existe`);
     }
 }

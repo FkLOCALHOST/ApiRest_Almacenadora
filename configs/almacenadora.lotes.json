@@ -1,0 +1,232 @@
+[{
+  "_id": {
+    "$oid": "6816bec9979fb9b57af08a7c"
+  },
+  "numeroLote": "1244",
+  "cantidad": "1",
+  "fechaCaducidad": "2024/05/02",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "68142efb8c60b348bc83b737"
+      },
+      "_id": {
+        "$oid": "6816bec9979fb9b57af08a7d"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T01:11:37.629Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T01:16:17.987Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816beef979fb9b57af08a9f"
+  },
+  "numeroLote": "12445",
+  "cantidad": "1",
+  "fechaCaducidad": "2024/05/02",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "68142efb8c60b348bc83b737"
+      },
+      "_id": {
+        "$oid": "6816beef979fb9b57af08aa0"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T01:12:15.398Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T01:12:20.158Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816c12b10d9f191ac5ce11c"
+  },
+  "numeroLote": "12549",
+  "cantidad": "60",
+  "fechaCaducidad": "14/09/2025",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6816bdc4e855265ab0a9a4dc"
+      },
+      "nombreProducto": "Manzana",
+      "_id": {
+        "$oid": "6816c12b10d9f191ac5ce11d"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T01:21:47.248Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T04:25:55.651Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816ebd8a6d344c7a4c2ec56"
+  },
+  "numeroLote": "12550",
+  "cantidad": "5",
+  "fechaCaducidad": "2025/09/25",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6816bdc4e855265ab0a9a4dc"
+      },
+      "nombreProducto": "Manzana",
+      "_id": {
+        "$oid": "6816ebd8a6d344c7a4c2ec57"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T04:23:52.080Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T04:24:43.206Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6816f0f1ccc85500c59d23a1"
+  },
+  "numeroLote": "12555",
+  "cantidad": "5",
+  "fechaCaducidad": "14/09/2026",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6816bdc4e855265ab0a9a4dc"
+      },
+      "nombreProducto": "Manzana",
+      "_id": {
+        "$oid": "6816f0f1ccc85500c59d23a2"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T04:45:37.948Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T04:46:28.752Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68177b385a5e7de2fc3a1f72"
+  },
+  "numeroLote": "1290",
+  "cantidad": "20",
+  "fechaCaducidad": "2025/06/31",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "68142efb8c60b348bc83b737"
+      },
+      "nombreProducto": "Tomate",
+      "_id": {
+        "$oid": "68177b385a5e7de2fc3a1f73"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T14:35:36.987Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-04T22:05:39.798Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6817ef79b5e015210d6b6326"
+  },
+  "numeroLote": "19555",
+  "cantidad": "25",
+  "fechaCaducidad": "2024/05/02",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6817945cee3cb3d6bec4decf"
+      },
+      "nombreProducto": "TE",
+      "_id": {
+        "$oid": "6817ef79b5e015210d6b6327"
+      }
+    }
+  ],
+  "estado": false,
+  "createdAt": {
+    "$date": "2025-05-04T22:51:37.446Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T00:45:35.603Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6817efc2b5e015210d6b639d"
+  },
+  "numeroLote": "19556",
+  "cantidad": "30",
+  "fechaCaducidad": "2025/09/03",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6817945cee3cb3d6bec4decf"
+      },
+      "nombreProducto": "TE",
+      "_id": {
+        "$oid": "6817efc2b5e015210d6b639e"
+      }
+    }
+  ],
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-04T22:52:50.625Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T01:48:35.763Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "681819c923f2e3a428e9e9f3"
+  },
+  "numeroLote": "88888",
+  "cantidad": "10",
+  "fechaCaducidad": "2024/05/02",
+  "productos": [
+    {
+      "productoId": {
+        "$oid": "6817945cee3cb3d6bec4decf"
+      },
+      "nombreProducto": "TE",
+      "_id": {
+        "$oid": "681819c923f2e3a428e9e9f4"
+      }
+    }
+  ],
+  "estado": true,
+  "createdAt": {
+    "$date": "2025-05-05T01:52:09.028Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-05T01:56:13.830Z"
+  }
+}]

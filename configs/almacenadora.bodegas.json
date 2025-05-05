@@ -1,0 +1,95 @@
+[{
+  "_id": {
+    "$oid": "6816bfe1979fb9b57af08ad9"
+  },
+  "numeroBodega": "1540",
+  "fechaIngreso": {
+    "$date": "2020-09-20T06:00:00.000Z"
+  },
+  "fechaSalida": {
+    "$date": "2025-05-20T06:00:00.000Z"
+  },
+  "lote": {
+    "$oid": "6816bec9979fb9b57af08a7c"
+  },
+  "trabajador": {
+    "$oid": "681424e5a323d5d8896b9a68"
+  },
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "6816ec0ba6d344c7a4c2ec8d"
+  },
+  "numeroBodega": "1541",
+  "fechaIngreso": {
+    "$date": "2020-04-20T06:00:00.000Z"
+  },
+  "fechaSalida": {
+    "$date": "2025-05-03T06:00:00.000Z"
+  },
+  "lote": {
+    "$oid": "6816ebd8a6d344c7a4c2ec56"
+  },
+  "trabajador": {
+    "$oid": "68144aca297d3172d9371303"
+  },
+  "estado": true
+},
+{
+  "_id": {
+    "$oid": "6816ec53a6d344c7a4c2ecd6"
+  },
+  "numeroBodega": "1551",
+  "fechaIngreso": {
+    "$date": "2020-04-20T06:00:00.000Z"
+  },
+  "fechaSalida": {
+    "$date": "2025-05-03T06:00:00.000Z"
+  },
+  "lote": {
+    "$oid": "6816c12b10d9f191ac5ce11c"
+  },
+  "trabajador": {
+    "$oid": "681424e5a323d5d8896b9a68"
+  },
+  "estado": false
+},
+{
+  "_id": {
+    "$oid": "6816f124ccc85500c59d23e5"
+  },
+  "numeroBodega": "1542",
+  "fechaIngreso": {
+    "$date": "2020-05-01T06:00:00.000Z"
+  },
+  "fechaSalida": {
+    "$date": "2025-05-03T06:00:00.000Z"
+  },
+  "lote": {
+    "$oid": "68177b385a5e7de2fc3a1f72"
+  },
+  "trabajador": {
+    "$oid": "681424e5a323d5d8896b9a68"
+  },
+  "estado": false
+},
+{
+  "_id": {
+    "$oid": "6817e4b37b9bf06afbff1d0c"
+  },
+  "numeroBodega": "1999",
+  "fechaIngreso": {
+    "$date": "2020-01-20T06:00:00.000Z"
+  },
+  "fechaSalida": {
+    "$date": "2025-05-25T06:00:00.000Z"
+  },
+  "lote": {
+    "$oid": "68177b385a5e7de2fc3a1f72"
+  },
+  "trabajador": {
+    "$oid": "68144aca297d3172d9371303"
+  },
+  "estado": true
+}]

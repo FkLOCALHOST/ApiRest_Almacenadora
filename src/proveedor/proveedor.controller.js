@@ -69,83 +69,88 @@ export const actualizarProveedor = async (req, res) => {
 
   export const cambiarEstado = async (req, res) => {
     try {
-      const { proveedorId } = req.params
-      const proveedor = await Proveedor.findById(proveedorId)
-
+      const { proveedorId } = req.params;
+      const proveedor = await Proveedor.findById(proveedorId);
+  
       if (!proveedor) {
         return res.status(404).json({
           success: false,
           message: 'Proveedor no encontrado'
-        })
+        });
       }
   
-      const nuevoEstado = proveedor.estado === 'ACTIVO' ? 'INACTIVO' : 'ACTIVO';
-  
-      proveedor.estado = nuevoEstado;
-      const proveedorActualizado = await proveedor.save()
+      proveedor.estado = !proveedor.estado; 
+      const proveedorActualizado = await proveedor.save();
   
       res.status(200).json({
         success: true,
-        message: `El estado ha sido cambiado a ${nuevoEstado}`,
+        message: `El estado ha sido cambiado a ${proveedor.estado ? 'ACTIVO' : 'INACTIVO'}`,
         proveedor: proveedorActualizado
-      })
+      });
   
     } catch (err) {
       res.status(500).json({
         success: false,
         message: 'Error al cambiar el estado del proveedor',
         error: err.message
-      })
+      });
     }
-  }
+  };
 
 
 export const eliminarProveedor = async (req, res) => {
-    try{
-        const {proveedorId} = req.params
+    try {
+        const { proveedorId } = req.params;
 
-        await Proveedor.findByIdAndDelete(proveedorId)
+        const proveedor = await Proveedor.findByIdAndUpdate(proveedorId, { estado: false },{ new: true });
 
-        res.status(201).json({
+        if (!proveedor) {
+            return res.status(404).json({
+                success: false,
+                message: 'Proveedor no encontrado'
+            });
+        }
+
+        res.status(200).json({
             success: true,
-            message: 'El proveedor ha sido eliminado correctamente'
-        })
+            message: 'Proveedor Eliminado Exitosamente',
+            proveedor
+        });
 
-    }catch(err){
+    }catch(err) {
         res.status(500).json({
             success: false,
             message: 'Error al eliminar el proveedor',
             error: err.message
-        })
+        });
     }
-}
+};
 
 
 export const listarProveedores = async (req, res) => {
     try {
-        const { limite = 10, desde = 0 } = req.query
-        const query = { estado: 'ACTIVO' }
+        const { limite = 10, desde = 0 } = req.query;
+        const query = { estado: true };
+
 
         const [total, proveedores] = await Promise.all([
             Proveedor.countDocuments(query),
             Proveedor.find(query)
                 .skip(Number(desde))
                 .limit(Number(limite))
-        ])
-
-        res.status(200).json({
+        ]);
+        return res.status(200).json({
             success: true,
             total,
-            proveedores
-        })
-
+            proveedores,
+            message: proveedores.length === 0 ? 'No se encontraron proveedores activos' : undefined
+        });
     } catch (err) {
-
         res.status(500).json({
             success: false,
             message: 'Error al listar los proveedores',
             error: err.message
-        })
+        });
     }
 }
 
@@ -175,12 +180,11 @@ export const buscarProveedor = async (req, res) => {
     }
 }
 
-
 export const generarPDFProveedores = async (req, res) => {
   try {
     const { filtro } = req.query;
 
-    const query = { estado: 'ACTIVO' };
+    const query = { estado: true };
     let sortOptions = {};
 
     switch (filtro) {
@@ -208,7 +212,7 @@ export const generarPDFProveedores = async (req, res) => {
         message: 'No hay proveedores activos para mostrar en el PDF.'
       });
     }
-
+    
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=proveedores.pdf');
 
@@ -258,6 +262,3 @@ export const generarPDFProveedores = async (req, res) => {
     });
   }
 };
-
-  
-

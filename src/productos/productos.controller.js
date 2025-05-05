@@ -27,24 +27,17 @@ export const agregarProducto = async(req, res) =>{
     }
 }
 
-export const listarProductos = async(req, res) =>{
-    try{
-        const productos = await Productos.find();
-
-        if (!productos || productos.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: "No se encontraron productos"
-            });
-        }
+export const listarProductos = async (req, res) => {
+    try {
+        const productos = await Productos.find({ estado: true });
 
         return res.status(200).json({
             success: true,
             total: productos.length,
-            productos
+            productos,
+            message: productos.length === 0 ? 'No se encontraron productos activos' : undefined
         });
-
-    }catch(err){
+    } catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error al obtener los productos",
@@ -57,7 +50,7 @@ export const buscarProducto = async (req, res) => {
     const { idProducto } = req.params;
 
     try{
-        const producto = await Productos.findById(idProducto);
+        const producto = await Productos.findOne({ _id: idProducto, estado: true });
 
         if(!producto){
             return res.status(404).json({ 
@@ -85,7 +78,9 @@ export const actualizarProducto = async(req, res) =>{
         const { idProducto } = req.params;
         const data = req.body;
 
-        const actualizarProducto = await Productos.findByIdAndUpdate(idProducto, data, { new: true })
+        const producto = await Productos.findOne({ _id: idProducto, estado: true });
+
+        const actualizarProducto = await Productos.findByIdAndUpdate(producto._id, data, { new: true })
 
         res.status(200).json({
             success: true,
@@ -104,26 +99,59 @@ export const actualizarProducto = async(req, res) =>{
 };
 
 
-export const eliminarProducto = async(req, res) =>{
-    try{
+export const eliminarProducto = async (req, res) => {
+    try {
         const { idProducto } = req.params;
-        
-        await Productos.findByIdAndDelete(idProducto);
 
-        res.status(200).json({ 
+        const producto = await Productos.findByIdAndUpdate(idProducto, { estado: false },{ new: true });
+
+        if (!producto) {
+            return res.status(404).json({
+                success: false,
+                message: 'Producto no encontrado'
+            });
+        }
+
+        res.status(200).json({
             success: true,
-            message: 'Producto eliminado exitosamente' 
+            message: 'Producto Eliminado',
+            producto
         });
 
-    }catch(err){
+    }catch(err) {
         res.status(500).json({
             success: false,
             message: 'Error al eliminar el producto',
             error: err.message
         });
     }
-}
+};
 
+export const listarPorCantidadVentas = async(req, res) => {
+  try {
+    const productos = await Productos.find({ estado: true })
+      .sort({ cantidadVenta: -1 });
+    
+    if (!productos || productos.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "No se encontraron productos"
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      total: productos.length,
+      productos
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error al listar productos por cantidad de ventas",
+      error: error.message
+    });
+  }
+}
 
 export const generarPDFProductos = async (req, res) => {
     try {
@@ -178,6 +206,7 @@ export const generarPDFProductos = async (req, res) => {
         descripcion: 150,
         precio: 350,
         categoria: 450,
+        cantidadVenta: 550,
       };
   
       const startY = doc.y;
@@ -185,7 +214,9 @@ export const generarPDFProductos = async (req, res) => {
         .text('Nombre', positions.nombre, startY)
         .text('Descripción', positions.descripcion, startY)
         .text('Precio', positions.precio, startY)
+        .text('Cantidad de venta', positions.cantidadVenta, startY)
         .text('Categoría', positions.categoria, startY);
+
   
       doc.moveTo(50, startY + 15).lineTo(550, startY + 15).stroke();
   
@@ -199,6 +230,7 @@ export const generarPDFProductos = async (req, res) => {
             ellipsis: true
           })
           .text(`$${p.precio.toFixed(2)}`, positions.precio, currentY)
+          .text(p.cantidadVenta, positions.cantidadVenta, currentY)
           .text(p.categoria || '-', positions.categoria, currentY);
   
         doc.moveTo(50, currentY + 15).lineTo(550, currentY + 15).stroke();
